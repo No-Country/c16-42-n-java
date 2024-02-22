@@ -10,4 +10,11 @@ public class MedicalApplication {
 		SpringApplication.run(MedicalApplication.class, args);
 	}
 
+	/*
+	* package
+	* Models
+	* controller
+	* Repository
+	* Service
+	* */
 }
