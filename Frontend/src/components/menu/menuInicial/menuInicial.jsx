@@ -15,10 +15,10 @@ export default function Menu(){
                     <p>Aqui va el logo</p>
                 </div>
                 <div className={styles.Clinks}>
-                    <Link to={"/"} className={styles.links}>Home</Link>
+                    <Link to={"/"} className={styles.links}>Inicio</Link>
                     <Link to={"/info"} className={styles.links}>Info</Link>
-                    <Link to={"/about"} className={styles.links}>About</Link>
-                    <Link to={"/contact"} className={styles.links}>Contact</Link>
+                    <Link to={"/about"} className={styles.links}>Equipo</Link>
+                    <Link to={"/contact"} className={styles.links}>Contacto</Link>
                 </div>
             </nav>
 

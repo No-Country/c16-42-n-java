@@ -40,4 +40,5 @@
     color: black !important;
     border-radius: 5%;
     transition: 0.2s;
+    text-decoration: underline;
 }
