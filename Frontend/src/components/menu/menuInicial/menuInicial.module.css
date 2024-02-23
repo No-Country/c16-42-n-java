@@ -1,0 +1,31 @@
+
+
+.nav{
+
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-wrap: wrap;
+    
+
+}
+
+.logo{
+    border-color: white;
+    border:1px solid;
+    width: 20%;
+}
+.Clinks{
+    display: flex;
+    
+    justify-items: center;
+    justify-content:end;
+    
+    padding: 1%;
+    width: 80%;
+}
+.links{
+    padding-left: 1%;
+    text-decoration: none;
+    color: white;
+}
