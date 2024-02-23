@@ -12,7 +12,7 @@ export default function Menu(){
         <div>
             <nav className={styles.nav}>
                 <div className={styles.logo}>
-                    <p>Aqui va el logo</p>
+                    
                 </div>
                 <div className={styles.Clinks}>
                     <Link to={"/"} className={styles.links}>Inicio</Link>

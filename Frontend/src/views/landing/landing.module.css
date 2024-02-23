@@ -24,7 +24,10 @@
     border-radius: 2%;
     padding: 3%;
     box-shadow: -4px 10px 4px 10px #c1e8ffbe;
-    
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
 }
 
 .words{
@@ -37,16 +40,17 @@
     
     background-color: #c1e8ff;
     border-radius: 4%;
-    
+    width: 30%;
     padding: 2%;
+    text-align: center;
 }
 
 
 .link:hover{
-    background-color: #021024;
+    background-color: #052659;
     color: #c1e8ff !important;
     transition: 0.5s;
-    border: 1px solid #c1e8ff;
+
 
 }
 

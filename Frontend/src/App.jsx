@@ -9,9 +9,10 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 //Importamos los estilos
 import './App.css'
+//Importamos las vistas
 import Landing from './views/landing/landing';
 import Login from './views/Login/login';
-//Importamos las vistas
+import Info from './views/info/info';
 
 export default function App() {
   
@@ -22,6 +23,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Landing />} />
           <Route path='/login' element= {<Login />} />
+          <Route path='/info' element= {<Info />} />
         </Routes>
     </div>
   )

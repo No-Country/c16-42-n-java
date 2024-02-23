@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./info.module.css";
 
 //importamoS el menu inicial
@@ -10,9 +9,13 @@ export default function Info(){
 
     return(
         
-        <div>
-
-
+        <div className={styles.container}>
+            <Menu />
+            <div className={styles.sContainer}>
+                <div className={styles.mContainer}>
+                    <p>Aqui se supone que va informacion</p>
+                </div>
+            </div>
         </div>
     )
 

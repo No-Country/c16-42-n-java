@@ -9,7 +9,7 @@ export default function Landing(){
 
     return(
         <div className={styles.container}>
-            <Menu className={styles.nav}/>
+            <Menu />
             <div className={styles.sContainer}>
                 <div className={styles.s2Container}>
                     <div className={styles.words}>
