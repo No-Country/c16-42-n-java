@@ -11,9 +11,13 @@ export default function Landing(){
         <div className={styles.container}>
             <Menu className={styles.nav}/>
             <div className={styles.sContainer}>
-            <h1>Su sistema de salud</h1>
-            <h2>Simplificado</h2>
-            <Link to={"/login"}>Ingresar</Link>
+                <div className={styles.s2Container}>
+                    <div className={styles.words}>
+                    <h1>Su sistema de salud</h1>
+                    <h2>Simplificado!</h2>
+                    </div>
+                    <Link to={"/login"} className={styles.link}>Ingresar</Link>
+                </div>
             </div>
         </div>
     )

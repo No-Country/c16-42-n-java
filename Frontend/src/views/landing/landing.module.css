@@ -2,11 +2,51 @@
 
 .container{
     width: 100%;
-    background-color: rgb(91, 150, 199);
+    background-color: #7DA0CA;
     color: white;
     font-size: 1.5rem;
     height: 100vh;
     
 }
 
+.sContainer{
     
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.s2Container{
+    background-color: #021024;
+    color: white;
+    border-radius: 2%;
+    padding: 3%;
+    box-shadow: -4px 10px 4px 10px #c1e8ffbe;
+    
+}
+
+.words{
+
+    padding-bottom: 3%;
+}
+    
+
+.link{
+    
+    background-color: #c1e8ff;
+    border-radius: 4%;
+    
+    padding: 2%;
+}
+
+
+.link:hover{
+    background-color: #021024;
+    color: #c1e8ff !important;
+    transition: 0.5s;
+    border: 1px solid #c1e8ff;
+
+}
+
