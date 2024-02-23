@@ -1,0 +1,55 @@
+.h1, h1 {
+    font-size: calc(1.375rem + 1.5vw);
+}
+
+.navbar{
+    background-image: linear-gradient(to right, rgba(222, 204, 129), rgba(177, 45, 45, 0.938));
+}
+
+.hero .h1, .hero h1 {
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 5px rgba(248, 176, 8, 0.9);
+}
+
+img{
+    width: 3%;
+    margin-right: 0.5%;
+}
+.text-ptn-color-gsj-brand {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-ptn-color-gsj-brand-rgb),var(--bs-text-opacity))!important;
+}
+
+.text-center {
+    text-align: center!important;
+}
+
+.align-items-center {
+    align-items: center!important;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+
+.nav-link {
+    display: block;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    color: var(--bs-nav-link-color);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    /* text-decoration: underline; */
+}
+
+

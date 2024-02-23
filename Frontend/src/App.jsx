@@ -1,24 +1,20 @@
-//importamos las librerias
-import { useState, useEffect, useReducer } from 'react'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-//Importamos los estilos
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import './App.css'
 import Landing from './views/landing/landing';
 import Login from './views/Login/login';
 //Importamos las vistas
+import Banner from './components/Banner'
+import { Navbar } from './components/NavBar'
 
 function App() {
-  
+  const [count, setCount] = useState(0)
 
   return (
-    <div className='app'>
-        
-        <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/login' element= {<Login />} />
-        </Routes>
-    </div>
+    <>
+        <h1>Testing</h1>
+    </>
   )
 }
 
