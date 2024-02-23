@@ -6,7 +6,7 @@ import { Navbar } from './components/navbar/NavBar'
 //importamos las librerias
 import { useState, useEffect, useReducer } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
 //Importamos los estilos
 import './App.css'
 //Importamos las vistas
