@@ -1,6 +1,6 @@
 import './App.css'
-import Banner from './components/Banner'
-import { Navbar } from './components/NavBar'
+import Banner from './components/banner/Banner'
+import { Navbar } from './components/navbar/NavBar'
 
 
 //importamos las librerias

@@ -6,7 +6,7 @@
     background-color: rgb(0, 0, 0);
     display: flex;
     flex-wrap: wrap;
-    
+    color: white;
 
 }
 
@@ -25,7 +25,19 @@
     width: 80%;
 }
 .links{
+    font-size: 1rem;
     padding-left: 1%;
+    padding-right: 1%;
     text-decoration: none;
-    color: white;
+    color: white !important; /*El important hace un override manual a las propiedades de encima */
+    border-radius: 5%;
+   
+}
+
+.links:hover{
+
+    background-color: white;
+    color: black !important;
+    border-radius: 5%;
+    transition: 0.2s;
 }
