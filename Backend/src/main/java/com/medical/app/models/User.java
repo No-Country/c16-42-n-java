@@ -6,14 +6,14 @@ import lombok.*;
 @Data
 @Inheritance(strategy = InheritanceType.JOINED)
 @MappedSuperclass
-public class Usuario {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dni;
-    private String nombre;
+    private String name;
     private String email;
-    private String direccion;
-    private String telefono;
+    private String address;
+    private String phoneNumber;
 
 }
