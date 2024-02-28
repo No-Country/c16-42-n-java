@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Data
@@ -12,7 +13,8 @@ import java.util.Date;
 public class Appointment {
     //Cita
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "medical_visit_id")
     private Long id;
 
     @ManyToOne
@@ -23,7 +25,7 @@ public class Appointment {
     private Doctor doctor;
 
     private Date date;
-    private LocalDate time;
+    private LocalTime time; // cambiar en la modelo DER
     private boolean reminder;
     private boolean status;
 
