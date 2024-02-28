@@ -1,8 +1,30 @@
-# React + Vite
+# Centro Médico No-Country
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# FrontEnd con React + Vite
 
-Currently, two official plugins are available:
+Este proyecto  fue generado con [Vite](https://vitejs.dev) como servidor de desarrollo y construcción de aplicaciones web en tiempo real (HMR), y utiliza React para construir una aplicación de frontend simple.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Actualmente, los dos plugins oficiales están disponibles:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) usa [Babel](https://babeljs.io/) para un Fast Refresh.
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) usa [SWC](https://swc.rs/) para un Fast Refresh.
+
+## Setup
+
+Para instalar las dependencias, comenzamos con el siguiente comando:
+```bash
+npm install
+```
+
+Luego compilamos con:
+```bash
+npm run build
+```
+
+Y por último levantamos el proyecto con:
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en [http://localhost:5173](http://localhost:5173).
+
