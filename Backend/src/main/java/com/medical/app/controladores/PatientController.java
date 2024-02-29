@@ -20,10 +20,12 @@ public class PatientController {
 
     @GetMapping
     public ResponseEntity<List<Patient>> getPatients(){
+        return ResponseEntity.ok().body(patientService.getPatients());
+        /*
         try {
             return ResponseEntity.ok().body(patientService.getPatients());
         }catch (Exception e){
             throw new RuntimeException(e.getMessage());
-        }
+        }*/
     }
 }

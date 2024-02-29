@@ -29,6 +29,7 @@ public class SecretaryService {
         newSecretary.setPhoneNumber(secretaryRequest.getPhoneNumber());
         // Guarda la nueva entidad en la base de datos
         Secretary savedSecretary = secretaryRepository.save(newSecretary);
+        System.out.println(secretaryRequest.getPhoneNumber());
 
         // Construye y devuelve una respuesta con los datos relevantes
         return SecretaryResponse.builder()
