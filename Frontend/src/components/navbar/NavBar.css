@@ -5,7 +5,7 @@
 .navbar{
     /* background-image: linear-gradient(to right, rgb(133, 160, 200,0.1)30%, rgb(117, 148, 192)100%); */
     /* background-image: linear-gradient(to left, rgb(117, 148, 192)30%, rgb(133, 160, 200,0.1)100%); */
-    background-image: linear-gradient(to left, rgb(133, 160, 200,0.1)30%, rgb(117, 148, 192)100%);
+    background-image: linear-gradient(to left, rgba(108, 134, 172, 0.8)30%, rgb(71, 119, 187)100%);
 
 }
 
