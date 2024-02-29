@@ -1,18 +1,16 @@
 
+import { Navbar } from '../navbar/NavBar';
 import './Banner.css'
-function Banner() {
+
+export const Banner = () => {
 
   return (
     <>
       <section className="hero">
-        <div className="mascara">
-          <div className="container">
-            <div className="row">
-      <img className='rounded float-start' src="./img/logo.png" alt="" />
-              <div className="col text-end">
-               
-              </div>
-            </div>
+        <div className="mascara ">
+          <div className="container ">
+              <img src="./img/logo2.svg" alt="" />
+              <Navbar />
           </div>
         </div>
       </section>

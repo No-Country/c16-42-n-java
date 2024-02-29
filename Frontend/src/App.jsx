@@ -1,6 +1,4 @@
 import './App.css'
-import Banner from './components/banner/Banner'
-import { Navbar } from './components/navbar/NavBar'
 
 
 //importamos las librerias
@@ -15,16 +13,16 @@ import Login from './views/Login/login';
 import Info from './views/info/info';
 
 export default function App() {
-  
+
 
   return (
     <div className='app'>
-        
-        <Routes>
-          <Route path='/' element={<Landing />} />
-          <Route path='/login' element= {<Login />} />
-          <Route path='/info' element= {<Info />} />
-        </Routes>
+
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/info' element={<Info />} />
+      </Routes>
     </div>
   )
 }

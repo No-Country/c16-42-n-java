@@ -3,7 +3,10 @@
 }
 
 .navbar{
-    background-image: linear-gradient(to right, rgba(222, 204, 129), rgba(177, 45, 45, 0.938));
+    /* background-image: linear-gradient(to right, rgb(133, 160, 200,0.1)30%, rgb(117, 148, 192)100%); */
+    /* background-image: linear-gradient(to left, rgb(117, 148, 192)30%, rgb(133, 160, 200,0.1)100%); */
+    background-image: linear-gradient(to left, rgb(133, 160, 200,0.1)30%, rgb(117, 148, 192)100%);
+
 }
 
 .hero .h1, .hero h1 {
@@ -12,9 +15,10 @@
 }
 
 img{
-    width: 3%;
+    width: 5%;
     margin-right: 0.5%;
 }
+
 .text-ptn-color-gsj-brand {
     --bs-text-opacity: 1;
     color: rgba(var(--bs-ptn-color-gsj-brand-rgb),var(--bs-text-opacity))!important;
@@ -31,7 +35,6 @@ img{
 .d-flex {
     display: flex!important;
 }
-
 
 .nav-link {
     display: block;
