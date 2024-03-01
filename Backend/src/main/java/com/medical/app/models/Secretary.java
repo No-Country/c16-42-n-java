@@ -1,5 +1,6 @@
 package com.medical.app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.Builder;
@@ -15,8 +16,10 @@ import java.util.List;
 public class Secretary extends User {
 
     private String area;
+    /*
     @OneToMany(mappedBy = "secretary",cascade = CascadeType.ALL)
-    private List<Patient> patients;
+    @JsonIgnore
+    private List<Patient> patients;*/
     @OneToMany(mappedBy = "secretary",cascade = CascadeType.ALL)
     private List<Doctor> doctors;
 

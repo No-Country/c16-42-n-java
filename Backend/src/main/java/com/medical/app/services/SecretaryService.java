@@ -19,7 +19,6 @@ public class SecretaryService {
 
 
     public SecretaryResponse createSecretary(SecretaryRequest secretaryRequest) {
-        // Crea una nueva instancia de Secretary
         Secretary newSecretary = new Secretary();
         newSecretary.setDni(secretaryRequest.getDni());
         newSecretary.setAddress(secretaryRequest.getAddress());
@@ -27,10 +26,8 @@ public class SecretaryService {
         newSecretary.setEmail(secretaryRequest.getEmail());
         newSecretary.setName(secretaryRequest.getName());
         newSecretary.setPhoneNumber(secretaryRequest.getPhoneNumber());
-        // Guarda la nueva entidad en la base de datos
         Secretary savedSecretary = secretaryRepository.save(newSecretary);
 
-        // Construye y devuelve una respuesta con los datos relevantes
         return SecretaryResponse.builder()
                 .dni(savedSecretary.getDni())
                 .address(savedSecretary.getAddress())
@@ -45,7 +42,6 @@ public class SecretaryService {
         // SELECT * FROM secretary
         List<Secretary> secretarys = (List<Secretary>) secretaryRepository.findAll();
 
-        // se mapea la lista que recibimos de la base y la retornamos como tipo List
         return secretarys.stream()
                 .map(s -> SecretaryResponse.builder()
                         .dni(s.getDni())
@@ -60,32 +56,31 @@ public class SecretaryService {
 
 
     public SecretaryResponseComplete getSecretaryByDni(Integer dni) {
-        Optional<Secretary> optionalSecretary = secretaryRepository.findByDni(dni);
-
-        if (optionalSecretary.isPresent()) {
-            Secretary secretary = optionalSecretary.get();
-
-            return SecretaryResponseComplete.builder()
-                    .id(secretary.getId())
-                    .dni(secretary.getDni())
-                    .name(secretary.getName())
-                    .email(secretary.getEmail())
-                    .address(secretary.getAddress())
-                    .phoneNumber(secretary.getPhoneNumber())
-                    .area(secretary.getArea())
-                    .build();
-        } else {
-            return SecretaryResponseComplete.error("No se encontró un secretario con el DNI proporcionado.");
-        }
+        return secretaryRepository.findByDni(dni)
+                .map(secretary -> SecretaryResponseComplete.builder()
+                        .id(secretary.getId())
+                        .dni(secretary.getDni())
+                        .name(secretary.getName())
+                        .email(secretary.getEmail())
+                        .address(secretary.getAddress())
+                        .phoneNumber(secretary.getPhoneNumber())
+                        .area(secretary.getArea())
+                        .build())
+                .orElse(SecretaryResponseComplete.builder()
+                        .id(null)
+                        .dni(0)
+                        .name("Not Found")
+                        .email("Not Found")
+                        .address("Not Found")
+                        .phoneNumber("Not Found")
+                        .area("Not Found")
+                        .build());
     }
 
 
     public SecretaryResponse modifySecretaryByDni(Integer dni, SecretaryModifyRequest secretaryRequest) {
         Optional<Secretary> optionalSecretary = secretaryRepository.findByDni(dni);
 
-        if (optionalSecretary.isEmpty()) {
-            return SecretaryResponse.error("No se encontró un secretario con el DNI proporcionado");
-        }
 
         Secretary secretary = optionalSecretary.get();
 
