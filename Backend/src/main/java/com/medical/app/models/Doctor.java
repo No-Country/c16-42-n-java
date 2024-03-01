@@ -16,8 +16,9 @@ public class Doctor extends User {
     private String office;
     //especialid- consultorio - horario
     private String schedule;
+    /*
     @OneToMany(mappedBy = "doctor")
-    private List<Patient> patients;
+    private List<Patient> patients;*/
     private String licenseNumber;
     @ManyToOne
     @JoinColumn(name = "secretary_id")

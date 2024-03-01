@@ -41,7 +41,7 @@ public class SecretaryController {
     public ResponseEntity<SecretaryResponseComplete> getSecretaryByDni(@RequestParam Integer dni) {
         SecretaryResponseComplete secretaryResponse = secretaryService.getSecretaryByDni(dni);
 
-        if (secretaryResponse != null && secretaryResponse.getErrorMessage() != null) {
+        if (secretaryResponse != null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(secretaryResponse);
         }
 

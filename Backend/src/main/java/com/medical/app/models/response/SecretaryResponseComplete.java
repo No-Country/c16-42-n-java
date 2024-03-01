@@ -13,13 +13,13 @@ public class SecretaryResponseComplete {
     private String address;
     private String phoneNumber;
     private String area;
-    private String errorMessage;
 
+/*
     public static SecretaryResponseComplete error(String errorMessage) {
         if (errorMessage != null) {
             return SecretaryResponseComplete.builder().errorMessage(errorMessage).build();
         } else {
             return SecretaryResponseComplete.builder().build();
         }
-    }
+    }*/
 }

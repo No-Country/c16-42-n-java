@@ -12,14 +12,14 @@ public class SecretaryResponse {
     private String address;
     private String phoneNumber;
     private String area;
-    private String errorMessage;
 
 
+/*
     public static SecretaryResponse error(String errorMessage) {
         if (errorMessage != null) {
             return SecretaryResponse.builder().errorMessage(errorMessage).build();
         } else {
             return SecretaryResponse.builder().build();
         }
-    }
+    }*/
 }
