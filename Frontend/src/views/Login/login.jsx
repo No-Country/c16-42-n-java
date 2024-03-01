@@ -1,19 +1,52 @@
 import { Link } from "react-router-dom";
 import styles from "./login.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { loginUser } from "../../data/HttpClient";
+
+const userInitial = {
+  username: "",
+  password: ""
+}
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [user, setUser] = useState(userInitial);
+
+  const { username, password } = user;
 
   const enviar = (event) => {
+    loginUser(user)
+    .then(data => {
+      console.log('Usuario creado:', data);
+      // Maneja la respuesta del servidor aquí
+    })
+    .catch(error => {
+      console.error('Error al crear el usuario:', error);
+      // Maneja el error aquí
+    });
+    const {target:{name, value}} = event;
     event.preventDefault();
-    console.log(event);
+    setUser({
+      [name]: value
+    });
+    // setUser(userInitial);
+    console.log(event.target)
   };
 
-  const usernameOnchange = (event)=>{
-    setUsername(event.target.value)
+  useEffect(() => {
+    
+  }, [user]);
+
+  const userOnchange = ({ target: { name, value } }) => {
+    setUser({
+      ...user,
+      [name]: value,
+    });
   }
+
+  console.log(user);
+
+
 
   return (
     <div className={styles.container}>
@@ -34,7 +67,7 @@ export default function Login() {
                     <form onSubmit={enviar}>
                       <div className="text-center p-3">
                         <img
-                          className="mt-5"  
+                          className="mt-5"
                           src="img/logo2.svg"
                           alt="login"
                           style={{ width: "30%", margin: "auto" }}
@@ -50,10 +83,10 @@ export default function Login() {
                           <input
                             type="text"
                             className="form-control"
-                            id="userName"
+                            id="username"
                             name="username"
                             value={username}
-                            onChange={usernameOnchange}
+                            onChange={userOnchange}
                             aria-describedby="userNameHelp"
                             placeholder="Usuario"
                           />
@@ -64,15 +97,15 @@ export default function Login() {
                             className="form-control"
                             id="password"
                             name="password"
-                            // value={password}
-                            // onChange={password}
+                            value={password}
+                            onChange={userOnchange}
                             aria-describedby="passwordHelp"
                             placeholder="Contraseña"
                           />
                         </div>
                         <div className={styles.link}>
                           <button
-                          type="submit"
+                            type="submit"
                             className={`${styles.buttonIngresar} btn btn-success btn-opacity-10`}
                           >
                             Ingresar
