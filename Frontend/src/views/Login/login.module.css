@@ -44,10 +44,8 @@
 }
 
 .link {
-  background-color: #c1e8ff;
   border-radius: 4%;
-  width: 30%;
-  padding: 2%;
+  width: 100%;
   text-align: center;
 }
 
