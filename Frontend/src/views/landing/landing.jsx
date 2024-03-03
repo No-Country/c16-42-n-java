@@ -1,21 +1,59 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./landing.module.css";
 
+import { Navbar } from "../../components/navbar/NavBar";
+import { NavBarLanding } from "../../components/navbar/NavBarLanding";
+import { useEffect } from "react";
 
-export default function Landing(){
+export default function Landing() {
+const navigate = useNavigate();
 
-    return(
-        <div className={styles.container}>
-            <div className={styles.sContainer}>
-                <div className={styles.s2Container}>
-                    <div className={styles.words}>
-                    <h1>Su sistema de salud</h1>
-                    <h2>Simplificado!</h2>
-                    </div>
-                    <Link to={"/login"} className={styles.link}>Ingresar</Link>
-                </div>
-            </div>
+
+  const callLogin = ()=>{
+    navigate("/login")
+  }
+
+
+
+  return (
+    <>
+      <NavBarLanding />
+      <div>
+        <div className="section section--header">
+          <h1 className="section__title">Turnos Online</h1>
         </div>
-    )
+        <div className="section section--md">
+          <div className="section__body">
 
+            <div className="row row--gap">
+              <div className="col--gap col-xs-12 col-lg-7">
+                <h3>Nuevo Sistema de Turnos</h3>
+                <p>
+                  Conocé cómo funciona el nuevo sistema de{" "}
+                  <strong>
+                    reserva de turnos, es más ágil, simple y rápido
+                  </strong>
+                  .
+                </p>
+                <ul>
+                  <li>Elegí la Especialidad</li>
+                  <li>Elegí Médico y Turno</li>
+                  <li>Completá tus datos</li>
+                  <li>Confirmá el Turno</li>
+                  <button className="btn btn-primary" onClick={callLogin}> Reservar Turno</button>
+                </ul>
+              </div>  
+              <div className="col--gap col-xs-12 col-lg-5">
+                <img
+                  className={styles.photo}
+                  alt="Reservar Turno"
+                  src="/img/photo.jpg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }

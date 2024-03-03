@@ -1,4 +1,4 @@
-import styles from "./info.module.css";
+import styles from "./doctor.module.css";
 import {Navbar} from "../../components/navbar/NavBar.jsx";
 
 

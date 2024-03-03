@@ -1,8 +1,11 @@
 .box-login {
   width: 50%;
+
 }
 .modalContent {
   background-color: rgb(133, 160, 200);
+  margin-top: 90%;
+
 }
 .m {
   background-color: rgb(133, 160, 200);
@@ -16,6 +19,8 @@
   color: white;
   font-size: 1.5rem;
   height: 100vh;
+  margin-top: 90%;
+
 }
 
 .sContainer {
@@ -65,3 +70,14 @@
   margin: auto;
   background-color: rgb(0, 0, 128);
 }
+
+input:invalid {
+  border-color: #ff0000; /* Cambiar el color del borde a rojo */
+}
+
+input:invalid + span:after {
+  content: 'Hola'; /* Mensaje de error personalizado */
+  color: #ff0000; /* Color del mensaje de error */
+  font-size: 12px; /* Tamaño de la fuente del mensaje de error */
+}
+

@@ -1,169 +1,196 @@
-import { Link } from "react-router-dom";
-import styles from "./login.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import "./login.css";
+// import "./login.css";
 import { useEffect, useState } from "react";
-import { loginUser } from "../../data/HttpClient";
+import { createUser, loginUser } from "../../data/HttpClient";
+import { UserHook } from "../../context/UserContext";
 
 const userInitial = {
+  name: "",
+  lastname: "",
   username: "",
-  password: ""
-}
+  password: "",
+};
 
 export default function Login() {
-
   const [user, setUser] = useState(userInitial);
+  const { name, lastname, username, password } = user;
 
-  const { username, password } = user;
+  const [message, setMessage] = useState("");
+
+  const [isLoginVisible, setIsLoginVisible] = useState(true);
+  const [isSignupVisible, setIsSignupVisible] = useState(false);
+
+  const { status, setStatus } = UserHook(); //Utilizo el hook personalizado
+
+
+  const navigate = useNavigate();
 
   const enviar = (event) => {
     loginUser(user)
-    .then(data => {
-      console.log('Usuario creado:', data);
-      // Maneja la respuesta del servidor aquí
-    })
-    .catch(error => {
-      console.error('Error al crear el usuario:', error);
-      // Maneja el error aquí
-    });
-    const {target:{name, value}} = event;
+      .then((data) => {
+        console.log("Usuario creado:", data);
+        sessionStorage.setItem("st", "true");
+        setStatus(sessionStorage.getItem("st"));
+        navigate("/info");
+        // Maneja la respuesta del servidor aquí
+      })
+      .catch((error) => {
+        setUser(userInitial);
+        setMessage("Usuario o Contraseña inválidos");
+        console.error("Error al crear el usuario en login:", error);
+        // Maneja el error aquí
+      });
+    const {
+      target: { name, value },
+    } = event;
     event.preventDefault();
     setUser({
-      [name]: value
+      [name]: value,
     });
     // setUser(userInitial);
-    console.log(event.target)
+    console.log(event.target);
   };
 
-  useEffect(() => {
-    
-  }, [user]);
+  const create = (event) => {
+    createUser(user)
+      .then((data) => {
+        console.log("Usuario creado:", data);
+        sessionStorage.setItem("st", "true");
+        setStatus(sessionStorage.getItem("st"));
+        navigate("/login");
+        // Maneja la respuesta del servidor aquí
+      })
+      .catch((error) => {
+        setUser(userInitial);
+        setMessage("Usuario o Contraseña inválidos");
+        console.error("Error al crear el usuario en login:", error);
+        // Maneja el error aquí
+      });
+    const {
+      target: { name, value },
+    } = event;
+    event.preventDefault();
+    setUser({
+      [name]: value,
+    });
+    // setUser(userInitial);
+    console.log(event.target);
+  };
+
+  console.log("El estado es " + status);
+
+  useEffect(() => {}, [user]);
 
   const userOnchange = ({ target: { name, value } }) => {
     setUser({
       ...user,
       [name]: value,
     });
-  }
+  };
+
+  const handleLoginClick = () => {
+    setIsLoginVisible(true);
+    setIsSignupVisible(false);
+  };
+
+  const handleSignupClick = () => {
+    setIsLoginVisible(false);
+    setIsSignupVisible(true);
+  };
 
   console.log(user);
 
-
+ 
 
   return (
-    <div className={styles.container}>
-      <div className="abrir-modal animacion fadeIn">
-        <div
-          className="modal bg-opacity-25"
-          tabIndex="-1"
-          style={{ display: "block" }}
-        >
-          <div className={styles.sContainer}>
-            <div className="modal-dialog w-50">
-              <div
-                className={`${styles.m} modal-content bg-opacity-30 form-control`}
-                id="m"
-              >
-                <div className="modal-content bg-opacity-30 form-control p-0 border border-0">
-                  <div className={styles.modalContent}>
-                    <form onSubmit={enviar}>
-                      <div className="text-center p-3">
-                        <img
-                          className="mt-5"
-                          src="img/logo2.svg"
-                          alt="login"
-                          style={{ width: "30%", margin: "auto" }}
-                        />
+    <>
+      <div className="form-structor">
+        <form onSubmit={create}>
+          <div className={`signup ${isSignupVisible ? "slide-up" : ""}`}>
+            <h2 className="form-title" id="signup" onClick={handleLoginClick}>
+              BIENVENIDO
+            </h2>
+            <div className="form-holder">
+              <input
+                type="text"
+                className="input"
+                onChange={userOnchange}
+                placeholder="Nombre"
+                id="name"
+                name="name"
+                value={name}
+                required
+              />
+              <input
+                type="text"
+                className="input"
+                onChange={userOnchange}
+                placeholder="Apellido"
+                id="lastname"
+                name="lastname"
+                value={lastname}
+                required
+              />
+              <input
+                type="text"
+                className="input"
+                onChange={userOnchange}
+                placeholder="Usuario"
+                id="username"
+                name="username"
+                value={username}
+                required
+              />
+              <input
+                type="password"
+                className="input"
+                onChange={userOnchange}
+                placeholder="Password"
+                id="password"
+                name="password"
+                value={password}
+                required
+              />
+            </div>
+            <button className="submit-btn">Registrate</button>
+          </div>
+        </form>
 
-                        <h3 className="mt-3">BIENVENIDO</h3>
-                      </div>
-                      <div
-                        className="modal-body text-center"
-                        style={{ width: "70%", margin: "auto" }}
-                      >
-                        <div className="mb-3">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="username"
-                            name="username"
-                            value={username}
-                            onChange={userOnchange}
-                            aria-describedby="userNameHelp"
-                            placeholder="Usuario"
-                          />
-                        </div>
-                        <div className="mb-3">
-                          <input
-                            type="password"
-                            className="form-control"
-                            id="password"
-                            name="password"
-                            value={password}
-                            onChange={userOnchange}
-                            aria-describedby="passwordHelp"
-                            placeholder="Contraseña"
-                          />
-                        </div>
-                        <div className={styles.link}>
-                          <button
-                            type="submit"
-                            className={`${styles.buttonIngresar} btn btn-success btn-opacity-10`}
-                          >
-                            Ingresar
-                          </button>
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <div>
-                          <Link to="#" className="text-white mb-0">
-                            ¿Perdiste tu contraseña?
-                          </Link>
-                        </div>
-                        <div>
-                          <Link to="#" className="text-white mb-5">
-                            ¿No tienes cuenta? Registrate
-                          </Link>
-                        </div>
-                      </div>
-                    </form>
-                    <div className="text-center mt-5" style={{ width: "100%" }}>
-                      <Link to="/">
-                        <button
-                          type="submit"
-                          className={`${styles.buttonVolver} btn btn-success btn-opacity-10 `}
-                        >
-                          Volver
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+        <form onSubmit={enviar}>
+          <div className={`login ${isLoginVisible ? "slide-up" : ""}`}>
+            <div className="center">
+              <h2 className="form-title" id="login" onClick={handleSignupClick}>
+                ¿Estás registrado? Ingresa acá
+              </h2>
+              <div className="form-holder">
+                <input
+                  type="text"
+                  className="input"
+                  onChange={userOnchange}
+                  placeholder="Usuario"
+                  id="username"
+                  name="username"
+                  value={username}
+                  required
+                />
+                <input
+                  type="password"
+                  className="input"
+                  onChange={userOnchange}
+                  placeholder="Password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  required
+                />
               </div>
+              <button className="submit-btn">Loguearse</button>
+              <div className="msgErrorLogin">{message}</div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
-    </div>
-
-    //    <div className={styles.container}>
-
-    //         <div className={styles.main}>
-
-    //             <h1>Ingresa tu usuario y contraseña</h1>
-    //             <form action="">
-    //                 <label>
-    //                     Usuario
-    //                 </label>
-    //                 <br></br>
-    //                 <input placeholder="Pepitoperez123..."></input>
-    //                 <br></br>
-    //                 <label>
-    //                     Contraseña
-    //                 </label>
-    //                 <br></br>
-    //             </form>
-
-    //         </div>
-    //     </div>
-    //                 <input placeholder="********"></input>
+    </>
   );
 }

@@ -1,21 +1,28 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css'
-import Landing from './views/landing/landing';
-import Login from './views/Login/login';
-import Info from './views/info/info';
+import { Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./views/Login/login";
+import { UserHook } from "./context/UserContext";
+import { UserRoute } from "./routes/UserRoute";
+import Landing from "./views/landing/landing";
 
 export default function App() {
-
+  const { status, setStatus } = UserHook(); //Utilizo el hook personalizado
+  
+  
+  console.log("estoy en route " + status)
 
   return (
-    <div className='app'>
+    <div className="app">
       <Routes>
-        <Route path='/' element={<Landing />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/info' element={<Info />} />
+        {status ? (
+          <Route path="/*" element={<UserRoute />} />
+        ) : (
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="/*" element={<Landing />} />
+          </>
+        )}
       </Routes>
     </div>
-  )
+  );
 }
-
-

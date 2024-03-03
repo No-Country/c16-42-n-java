@@ -48,10 +48,9 @@ export const loginUser = async (userData) => {
     if (!result.ok) {
       throw new Error('Error al crear el usuario');
     }
-
     return await result.json(); // Devolvemos los datos obtenidos del servidor
   } catch (error) {
-    console.error('Error al crear el usuario:', error);
+    console.error('Error al crear el usuario:');
     throw error; // Lanzamos el error para que sea manejado por el código que llama a esta función
   }
 };

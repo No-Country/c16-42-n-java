@@ -1,8 +1,8 @@
-import styles from "./info.module.css";
+import styles from "./patient.module.css";
 import {Navbar} from "../../components/navbar/NavBar.jsx";
 
 
-export default function Info()  {
+export default function Patient()  {
 
     return(
         <div className={styles.container}>
