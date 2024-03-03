@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface PatientRepository extends CrudRepository<Patient,Long> {
 
 
+    Patient getReferenceById(Long id);
+
+    Patient findByDni(int patientDni);
 }

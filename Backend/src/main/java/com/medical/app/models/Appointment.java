@@ -24,9 +24,10 @@ public class Appointment {
     @JoinColumn(name = "doctor_id") // columna  la FK en la tabla Cita
     private Doctor doctor;
 
-    private Date date;
+    private LocalDate date;
     private LocalTime time; // cambiar en la modelo DER
-    private boolean reminder;
-    private boolean status;
+    private Boolean reminder;
+    private Boolean status;
+    private String description;
 
 }
