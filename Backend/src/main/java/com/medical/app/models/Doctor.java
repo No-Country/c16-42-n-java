@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Doctor extends User {
 
-    private String specialty;
+    private String speciality;
     private String office;
     //especialid- consultorio - horario
     private String schedule;
@@ -20,9 +20,10 @@ public class Doctor extends User {
     @OneToMany(mappedBy = "doctor")
     private List<Patient> patients;*/
     private String licenseNumber;
-    @ManyToOne
+
     @JoinColumn(name = "secretary_id")
-    private Secretary secretary;
+    @Column(name="secretary_id")
+    private Long secretary;
     @OneToMany(mappedBy = "doctor")
     private List<Appointment> appointments;
 

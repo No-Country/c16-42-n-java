@@ -37,7 +37,7 @@ public class SecretaryController {
     }
 
 
-    @GetMapping("{dni}")
+    @GetMapping("/dni/{dni}")
     public ResponseEntity<SecretaryResponseComplete> getSecretaryByDni(@RequestParam Integer dni) {
         SecretaryResponseComplete secretaryResponse = secretaryService.getSecretaryByDni(dni);
 
@@ -60,6 +60,17 @@ public class SecretaryController {
         secretaryService.deleteSecretary(id);
 
         return ResponseEntity.ok().body("secretario eliminado");
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<SecretaryResponseComplete> getSecretaryById(@PathVariable Long id) {
+        SecretaryResponseComplete secretaryResponse = secretaryService.getSecretaryById(id);
+
+        if (secretaryResponse == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(secretaryResponse);
+        }
+
+        return ResponseEntity.ok().body(secretaryResponse);
     }
 
 
