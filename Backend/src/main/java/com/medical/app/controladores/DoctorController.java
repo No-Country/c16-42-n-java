@@ -52,4 +52,8 @@ public class DoctorController {
         return ResponseEntity.ok().body("doctor deleted with exit");
     }
 
+    @GetMapping("/dni/{dni}")
+    public ResponseEntity<DoctorResponseCompleto> getDoctorByDni(@RequestParam int dni){
+        return ResponseEntity.ok().body(doctorService.getDoctorByDni(dni));
+    }
 }

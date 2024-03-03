@@ -186,4 +186,28 @@ public class DoctorService {
 
     }
 
+    public DoctorResponseCompleto getDoctorByDni(Integer dni) {
+        // SELECT * FROM MEDICOS WHERE DNI=DNI
+        Optional<Doctor> doctorOptional = doctorRepository.findByDni(dni);
+
+        if (doctorOptional.isPresent()) {
+            Doctor doctor = doctorOptional.get();
+
+            return DoctorResponseCompleto.builder()
+                    .id(doctor.getId())
+                    .dni(doctor.getDni())
+                    .name(doctor.getName())
+                    .email(doctor.getEmail())
+                    .address(doctor.getAddress())
+                    .phoneNumber(doctor.getPhoneNumber())
+                    .specialty(doctor.getSpeciality())
+                    .office(doctor.getOffice())
+                    .schedule(doctor.getSchedule())
+                    .licenseNumber(doctor.getLicenseNumber())
+                    .secretaryId(doctor.getSecretary())
+                    .build();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró el médico con DNI: " + dni);
+        }
+    }
 }

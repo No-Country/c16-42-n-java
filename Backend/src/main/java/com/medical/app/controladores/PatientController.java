@@ -60,4 +60,9 @@ public class PatientController {
 
         return ResponseEntity.ok().body("doctor deleted with exit");
     }
+
+    @GetMapping("/dni/{dni}")
+    public ResponseEntity<PatientResponseComplete> getPatientPorDni(@PathVariable int dni){
+        return ResponseEntity.ok().body(patientService.getPatientByDni(dni));
+    }
 }

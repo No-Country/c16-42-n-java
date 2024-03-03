@@ -169,4 +169,28 @@ public class PatientService {
         return patientRepository.findById(patientId)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró al paciente con ID: " + patientId));
     }
+
+
+    public PatientResponseComplete getPatientByDni(int dni) {
+        // SELECT * FROM paciente WHERE DNI=DNI
+        Optional<Patient> patientOptional = Optional.ofNullable(patientRepository.findByDni(dni));
+
+        if (patientOptional.isPresent()) {
+            Patient patient = patientOptional.get();
+
+            return PatientResponseComplete.builder()
+                    .Id(patient.getId())
+                    .dni(patient.getDni())
+                    .name(patient.getName())
+                    .email(patient.getEmail())
+                    .address(patient.getAddress())
+                    .phoneNumber(patient.getPhoneNumber())
+                    .birthDate(patient.getBirthDate())
+                    .emergencyNumber(patient.getEmergencyNumber())
+                    .secretaryId(patient.getSecretary())
+                    .build();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró el paciente con DNI: " + dni);
+        }
+    }
 }

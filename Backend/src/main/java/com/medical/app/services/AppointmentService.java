@@ -9,11 +9,14 @@ import com.medical.app.repository.DoctorRepository;
 import com.medical.app.repository.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
@@ -100,5 +103,15 @@ public class AppointmentService {
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
 
+    }
+
+    public void deleteAppointment(Long appointmentId) {
+        Optional<Appointment> appointmentOptional = appointmentRepository.findById(appointmentId);
+
+        if (appointmentOptional.isPresent()) {
+            appointmentRepository.deleteById(appointmentId);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró la cita con ID: " + appointmentId);
+        }
     }
 }

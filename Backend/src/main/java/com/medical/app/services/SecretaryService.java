@@ -124,4 +124,27 @@ public class SecretaryService {
         Secretary secreatry= secretaryRepository.getReferenceByid(id);
         secretaryRepository.delete(secreatry);
     }
+
+    public SecretaryResponseComplete getSecretaryById(Long id) {
+        return secretaryRepository.findById(id)
+                .map(secretary -> SecretaryResponseComplete.builder()
+                        .id(secretary.getId())
+                        .dni(secretary.getDni())
+                        .name(secretary.getName())
+                        .email(secretary.getEmail())
+                        .address(secretary.getAddress())
+                        .phoneNumber(secretary.getPhoneNumber())
+                        .area(secretary.getArea())
+                        .build())
+                .orElseGet(() -> SecretaryResponseComplete.builder()
+                        .id(null)
+                        .dni(0)
+                        .name("Not Found")
+                        .email("Not Found")
+                        .address("Not Found")
+                        .phoneNumber("Not Found")
+                        .area("Not Found")
+                        .build());
+    }
+
 }
