@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/appointments")
+@CrossOrigin ("http://localhost:5173")
 public class AppointmentController {
 
     @Autowired

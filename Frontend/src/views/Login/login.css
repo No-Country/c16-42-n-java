@@ -278,3 +278,14 @@ body {
 	text-align: center;
 	margin: 0;
 }
+
+label{
+  margin: 2px;
+  color:rgb(145, 143, 144);
+}
+#rol{
+  margin-left: 2%;
+  width: 50%;
+  border-radius: 5%;
+  border-color: ;
+}

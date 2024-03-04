@@ -8,6 +8,7 @@ import com.medical.app.models.response.SecretaryResponseComplete;
 import com.medical.app.repository.SecretaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,6 +53,12 @@ public class SecretaryService {
                         .phoneNumber(s.getPhoneNumber())
                         .build())
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Secretary> findById(Integer dni) {
+
+        return secretaryRepository.findByDni(dni);
     }
 
 

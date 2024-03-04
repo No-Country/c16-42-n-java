@@ -1,5 +1,6 @@
 package com.medical.app.controladores;
 
+import com.medical.app.models.Secretary;
 import com.medical.app.models.request.SecretaryModifyRequest;
 import com.medical.app.models.request.SecretaryRequest;
 import com.medical.app.models.response.SecretaryResponse;
@@ -12,9 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("secretaries")
+@CrossOrigin ("http://localhost:5173")
 public class SecretaryController {
 
     @Autowired
@@ -37,8 +40,20 @@ public class SecretaryController {
     }
 
 
+    @GetMapping("/buscar-por-dni/{dni}")
+    public ResponseEntity<?> findById(@PathVariable Integer dni) {
+      Optional<Secretary> secretaryResponse = secretaryService.findById(dni);
+
+        if (secretaryResponse.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(secretaryResponse);
+        }
+
+        return ResponseEntity.ok().body(secretaryResponse);
+    }
+
     @GetMapping("/dni/{dni}")
-    public ResponseEntity<SecretaryResponseComplete> getSecretaryByDni(@RequestParam Integer dni) {
+    public ResponseEntity<SecretaryResponseComplete> getSecretaryByDni(@PathVariable Integer dni) {
+        System.out.println("El dni es :" + dni);
         SecretaryResponseComplete secretaryResponse = secretaryService.getSecretaryByDni(dni);
 
         if (secretaryResponse != null) {

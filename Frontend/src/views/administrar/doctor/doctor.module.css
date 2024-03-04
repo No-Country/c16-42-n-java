@@ -1,0 +1,43 @@
+
+
+.container{
+    width: 100%;
+    background-color: #7DA0CA;
+    color: white;
+    font-size: 1.5rem;
+    height: 100vh;
+    
+}
+
+.sContainer{
+    
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.sContainer {
+    height: 100vh; /* Ajusta la altura para ocupar toda la ventana gráfica */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+form {
+    width: 60%;
+    background-color: #7DA0CA;
+    color: white;
+    font-size: 1.5rem;
+    padding: 20px; /* Agrega un poco de espacio alrededor del formulario */
+    border-radius: 10px; /* Agrega bordes redondeados al formulario */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra al formulario */
+}
+label{
+    color: rgba(0, 0, 0, 0.71);
+}
+
+    
+
+
+

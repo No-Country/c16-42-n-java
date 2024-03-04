@@ -2,11 +2,42 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const UserContext = createContext();
 
+const userInitial = {
+  name: "",
+  lastname: "",
+  username: "",
+  password: "",
+  rol: "",
+};
+
+const secretaryInitial = {
+  dni: "",
+  name: "",
+  email: "",
+  address: "",
+  phoneNumber: "",
+  area: "",
+};
+
+const patientInitial = {
+  dni: 0,
+  name: "",
+  email: "",
+  address: "",
+  phoneNumber: "",
+  birthDate: "000-00-00",
+  emergencyNumber: "",
+  secretaryId: 0,  
+};
+
 const UserProvider = ({ children }) => {
   const [status, setStatus] = useState(null);
-  
+  const [user, setUser] = useState(userInitial);
+  const [secretary, setSecretary] = useState(secretaryInitial);
+  const [patient, setPatient] = useState(patientInitial);
+
   useEffect(() => {
-    const storedStatus = sessionStorage.getItem('st');
+    const storedStatus = sessionStorage.getItem("st");
     if (storedStatus !== null) {
       setStatus(JSON.parse(storedStatus)); //JSON.parse(storedStatus): storedStatus se convierte de cadena a su representación de objeto JavaScript utilizando JSON.parse(). Esto es necesario porque los valores almacenados en sessionStorage son siempre cadenas.
     } else {
@@ -16,7 +47,9 @@ const UserProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ status, setStatus }}>
+    <UserContext.Provider
+      value={{ status, setStatus, user, setUser, secretary, setSecretary, patient, setPatient }}
+    >
       {status === null ? (
         <div>Cargando...</div> // Indicador de carga mientras se carga el estado
       ) : (

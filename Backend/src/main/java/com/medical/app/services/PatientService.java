@@ -63,7 +63,7 @@ public class PatientService {
 
         //busco secretario id
 
-        Optional<Secretary> optionalSecretary = secretaryRepository.findById(patientRequest.getSecretaryId());
+        Optional<Secretary> optionalSecretary = secretaryRepository.findByDni(Math.toIntExact(patientRequest.getSecretaryId()));
 
         if (!optionalSecretary.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró el secretario con ID: " + patientRequest.getSecretaryId());

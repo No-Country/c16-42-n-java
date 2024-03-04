@@ -1,19 +1,17 @@
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import styles from "./landing.module.css";
 
-import { Navbar } from "../../components/navbar/NavBar";
 import { NavBarLanding } from "../../components/navbar/NavBarLanding";
-import { useEffect } from "react";
 
 export default function Landing() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-
-  const callLogin = ()=>{
-    navigate("/login")
-  }
-
-
+  const callLogin = () => {
+    console.log("sessionStorage.getItem(st):" + sessionStorage.getItem("st"))
+    
+      navigate("/login");
+    
+  };
 
   return (
     <>
@@ -24,7 +22,6 @@ const navigate = useNavigate();
         </div>
         <div className="section section--md">
           <div className="section__body">
-
             <div className="row row--gap">
               <div className="col--gap col-xs-12 col-lg-7">
                 <h3>Nuevo Sistema de Turnos</h3>
@@ -40,9 +37,12 @@ const navigate = useNavigate();
                   <li>Elegí Médico y Turno</li>
                   <li>Completá tus datos</li>
                   <li>Confirmá el Turno</li>
-                  <button className="btn btn-primary" onClick={callLogin}> Reservar Turno</button>
+                  <button className="btn btn-primary" onClick={callLogin}>
+                    {" "}
+                    Reservar Turno
+                  </button>
                 </ul>
-              </div>  
+              </div>
               <div className="col--gap col-xs-12 col-lg-5">
                 <img
                   className={styles.photo}

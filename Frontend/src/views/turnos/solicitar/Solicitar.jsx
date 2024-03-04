@@ -1,5 +1,5 @@
-import styles from "./secretary.module.css";
-import {Navbar} from "../../components/navbar/NavBar.jsx";
+import styles from "./solicitar.module.css";
+import {Navbar} from "../../../components/navbar/NavBar.jsx";
 
 
 export default function Secretary()  {

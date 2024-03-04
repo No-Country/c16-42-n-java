@@ -75,5 +75,10 @@ a:-webkit-any-link {
     /* text-decoration: underline; */
 }
 
+.dropdown:hover > .dropdown-menu{
+    display:block;
+    margin-top: .125em;
+}
 
 
+    

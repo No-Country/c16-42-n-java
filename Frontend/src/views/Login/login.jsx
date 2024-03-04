@@ -1,8 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 // import "./login.css";
 import { useEffect, useState } from "react";
-import { createUser, loginUser } from "../../data/HttpClient";
+import { createUser, getRoles, loginUser } from "../../data/HttpClient";
 import { UserHook } from "../../context/UserContext";
 
 const userInitial = {
@@ -10,19 +10,20 @@ const userInitial = {
   lastname: "",
   username: "",
   password: "",
+  rol: "",
 };
 
 export default function Login() {
-  const [user, setUser] = useState(userInitial);
-  const { name, lastname, username, password } = user;
+  const { status, setStatus, user, setUser } = UserHook(); //Utilizo el hook personalizado
+
+  const [roles, setRoles] = useState([]);
+
+  const { name, lastname, username, password, rol } = user;
 
   const [message, setMessage] = useState("");
 
-  const [isLoginVisible, setIsLoginVisible] = useState(true);
-  const [isSignupVisible, setIsSignupVisible] = useState(false);
-
-  const { status, setStatus } = UserHook(); //Utilizo el hook personalizado
-
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
+  const [isSignupVisible, setIsSignupVisible] = useState(true);
 
   const navigate = useNavigate();
 
@@ -31,7 +32,11 @@ export default function Login() {
       .then((data) => {
         console.log("Usuario creado:", data);
         sessionStorage.setItem("st", "true");
-        setStatus(sessionStorage.getItem("st"));
+        sessionStorage.setItem("user", JSON.stringify(data));
+
+        setStatus(JSON.parse(sessionStorage.getItem("st")));
+        setUser(JSON.parse(sessionStorage.getItem("user")));
+        
         navigate("/info");
         // Maneja la respuesta del servidor aquí
       })
@@ -49,16 +54,17 @@ export default function Login() {
       [name]: value,
     });
     // setUser(userInitial);
-    console.log(event.target);
   };
 
   const create = (event) => {
     createUser(user)
       .then((data) => {
         console.log("Usuario creado:", data);
-        sessionStorage.setItem("st", "true");
+        // sessionStorage.setItem("st", "true");
         setStatus(sessionStorage.getItem("st"));
         navigate("/login");
+        window.location.reload();
+
         // Maneja la respuesta del servidor aquí
       })
       .catch((error) => {
@@ -67,6 +73,7 @@ export default function Login() {
         console.error("Error al crear el usuario en login:", error);
         // Maneja el error aquí
       });
+
     const {
       target: { name, value },
     } = event;
@@ -75,17 +82,13 @@ export default function Login() {
       [name]: value,
     });
     // setUser(userInitial);
-    console.log(event.target);
   };
-
-  console.log("El estado es " + status);
-
-  useEffect(() => {}, [user]);
 
   const userOnchange = ({ target: { name, value } }) => {
     setUser({
       ...user,
       [name]: value,
+      //
     });
   };
 
@@ -99,9 +102,33 @@ export default function Login() {
     setIsSignupVisible(true);
   };
 
-  console.log(user);
+  useEffect(() => {
+    const fetchRoles = () => {
+      getRoles()
+        .then((data) => {
+          // Maneja la respuesta del servidor aquí
+          setRoles(data);
+          console.log("Lista de Roles:", roles);
+        })
+        .catch((error) => {
+          console.error("Error al Listar los roles:", error);
+          // Maneja el error aquí
+        });
+    };
 
- 
+    // Llama a la función que obtiene los roles
+    fetchRoles();
+  }, []);
+
+  const handleRolChange = (event) => {
+    const selectedRol = event.target.value;
+    setUser((prevUser) => ({
+      ...prevUser,
+      rol: selectedRol,
+    }));
+    // Almacena el valor del rol actualizado en sessionStorage
+  sessionStorage.setItem("rol", selectedRol);
+  };
 
   return (
     <>
@@ -109,7 +136,7 @@ export default function Login() {
         <form onSubmit={create}>
           <div className={`signup ${isSignupVisible ? "slide-up" : ""}`}>
             <h2 className="form-title" id="signup" onClick={handleLoginClick}>
-              BIENVENIDO
+              ¿Deseas registrarte?
             </h2>
             <div className="form-holder">
               <input
@@ -152,16 +179,31 @@ export default function Login() {
                 value={password}
                 required
               />
+              <div className="input">
+                <label htmlFor="rol">Seleccionar Rol:</label>
+                <select onChange={handleRolChange} value={rol} required>
+                  <option value="">Seleccionar ...</option>
+                  {roles.map((r) => (
+                    <option key={r.id} value={r.rolName}>
+                      {r.rolName}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
+
             <button className="submit-btn">Registrate</button>
           </div>
         </form>
 
         <form onSubmit={enviar}>
           <div className={`login ${isLoginVisible ? "slide-up" : ""}`}>
-            <div className="center">
-              <h2 className="form-title" id="login" onClick={handleSignupClick}>
-                ¿Estás registrado? Ingresa acá
+            <div className="center" onClick={handleSignupClick}>
+              <h1 className="form-title" id="login">
+                BIENVENIDOS
+              </h1>
+              <h2 className="form-title" id="login">
+                ¿Estás registrado?
               </h2>
               <div className="form-holder">
                 <input

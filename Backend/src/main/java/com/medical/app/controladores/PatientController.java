@@ -9,9 +9,6 @@ import com.medical.app.models.response.DoctorResponseCompleto;
 import com.medical.app.models.response.PatientResponse;
 import com.medical.app.models.response.PatientResponseComplete;
 import com.medical.app.services.PatientService;
-import com.medical.app.services.SecretaryService;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +18,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("patients")
+@RequestMapping("/patients")
+@CrossOrigin ("http://localhost:5173")
 public class PatientController {
     @Autowired
     private PatientService patientService;
@@ -30,6 +28,7 @@ public class PatientController {
 
     @PostMapping("/create-patient")
     public ResponseEntity<?> createPatient(@RequestBody PatientRequest patientRequest) {
+        System.out.println(patientRequest.toString());
             PatientResponse createdPatient = patientService.createPatient(patientRequest);
             return ResponseEntity.ok().body(createdPatient);
 

@@ -3,7 +3,10 @@ import { UserHook } from "../../context/UserContext";
 import "./NavBar.css";
 
 export const Navbar = () => {
-  const { status, setStatus } = UserHook();
+  const { status, setStatus, user } = UserHook();
+  const { rol } = user;
+
+  console.log("El rol rol  del NavBar es: " + user.rol)
 
   const navigate = useNavigate();
 
@@ -11,19 +14,19 @@ export const Navbar = () => {
 
   const changeStatus = () => {
     if (status) {
-      sessionStorage.setItem("st", "false");
+      // sessionStorage.setItem("st", "false");
+      sessionStorage.clear();
       setStatus(false);
       navigate("/login");
-  console.log("Estoy en changeStatus " + status);
-
+      console.log("Estoy en changeStatus " + status);
     }
   };
-
+console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")));
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <img src="./img/logo2.svg" />
+          <img src="/public/img/logo2.svg" />
 
           <button
             className="navbar-toggler"
@@ -39,26 +42,12 @@ export const Navbar = () => {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-               <li className="nav-item">
+              <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/">
                   Inicio
                 </a>
               </li>
-             {/* <li className="nav-item">
-                <a className="nav-link" href="/paciente">
-                  Paciente
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/secretario">
-                  Secretario
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/doctor">
-                  Doctor
-                </a>
-              </li> */}
+
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -67,7 +56,43 @@ export const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Elegir ...
+                  Turnos ...
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a className="dropdown-item" href="/turnos/buscar">
+                      Consultar
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="/turnos/solicitar">
+                    Solicitar
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="/turnos/modificar">
+                    Modificar
+                    </a>
+                  </li>
+                </ul>
+              </li>
+
+
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Buscar ...
                 </a>
                 <ul className="dropdown-menu">
                   <li>
@@ -93,7 +118,9 @@ export const Navbar = () => {
                   </li>
                 </ul>
               </li>
-              <li className="nav-item dropdown">
+
+              {rol == "ADMINISTRADOR" ? 
+              (<li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"
@@ -101,47 +128,151 @@ export const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Administrador
+                  Administrar
                 </a>
                 <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="/login">
-                      Alta de usuario
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Secretario
                     </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a className="dropdown-item" href="/administrar/secretaria/crear">
+                          Crear Secretario
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="/administrar/secretaria/actualizar">
+                          Modificar Secretario
+                        </a>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="/administrar/secretaria/eliminar">
+                          Eliminar Secretario
+                        </a>
+                      </li>
+                    </ul>
                   </li>
-                  <li>
-                    <a className="dropdown-item" href="/modificar">
-                      Modifcar usuario
+
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Doctor
                     </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Crear Doctor
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Modificar Doctor
+                        </a>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Eliminar Doctor
+                        </a>
+                      </li>
+                    </ul>
                   </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/eliminar">
-                      Eliminar usuario
+
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Paciente
                     </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Crear Paciente
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Modificar Paciente
+                        </a>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Eliminar Paciente
+                        </a>
+                      </li>
+                    </ul>
                   </li>
+
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Administrador
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Crear Administrador
+                        </a>
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Modificar Administrador
+                        </a>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a className="dropdown-item" href="#">
+                          Eliminar Administrador
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+
                 </ul>
-              </li>
-              {/* <div className={styles.container}>
-                  <li>
-                    <a className="nav-link" aria-disabled="true">
-                      Logout
-                    </a>
-                  </li>
-                </div> */}
+              </li>)
+              :
+              ("")}
             </ul>
-            {/* <form className="d-flex" role="search">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-warning" type="submit">Search</button>
-            </form> */}
           </div>
           <button
             className="nav-link"
             aria-disabled="true"
             onClick={changeStatus}
-          > <img className="iconLogout" src="/img/logout.png" />
+          >
+            {" "}
+            <img className="iconLogout" src="/img/logout.png" />
           </button>
         </div>
       </nav>

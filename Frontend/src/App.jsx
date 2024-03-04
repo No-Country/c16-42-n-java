@@ -6,7 +6,7 @@ import { UserRoute } from "./routes/UserRoute";
 import Landing from "./views/landing/landing";
 
 export default function App() {
-  const { status, setStatus } = UserHook(); //Utilizo el hook personalizado
+  const { status } = UserHook(); //Utilizo el hook personalizado
   
   
   console.log("estoy en route " + status)
