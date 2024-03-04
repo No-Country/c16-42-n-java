@@ -4,6 +4,7 @@
     const API_ROLES = "http://localhost:8080/roles";
     const API_SECRETARY = "http://localhost:8080/secretaries";
     const API_PATIENT = "http://localhost:8080/patients";
+    const API_DOCTOR = "http://localhost:8080/doctor";
     
     export const Get = async () => {
       const result = await fetch(API , {
@@ -126,6 +127,31 @@ export const createPatient = async (patientData) => {
     throw error; // Lanzamos el error para que sea manejado por el código que llama a esta función
   }
 };
+
+/*DOCTOR */
+export const createDoctor = async (doctorData) => {
+
+  try {
+    const result = await fetch(API_DOCTOR + "/create-doctor", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(patientData) // Convertimos el objeto de usuario a JSON
+      
+    });
+    if (!result.ok) {
+      throw new Error('Error al crear el DOCTOR');
+    }
+    // console.log("Estoy se envia al servidor " + JSON.stringify(await result.json()));
+    return await result.json(); // Devolvemos los datos obtenidos del servidor
+
+  } catch (error) {
+    console.error('Error al crear el DOCTOR:', error);
+    throw error; // Lanzamos el error para que sea manejado por el código que llama a esta función
+  }
+};
+
 
 
 

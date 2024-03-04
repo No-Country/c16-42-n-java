@@ -17,6 +17,10 @@ import SecretaryDelete from "../views/administrar/secretary/SecretaryDelete.jsx"
 import PatientCreate from "../views/administrar/patient/PatientCreate.jsx";
 import PatientUpdate from "../views/administrar/patient/PatientUpdate.jsx";
 import PatientDelete from "../views/administrar/patient/PatientDelete.jsx";
+// import PatientAdministrar from "../views/administrar/patient/DoctorAdministrar.jsx";
+import DoctorCreate from "../views/administrar/doctor/DoctorCreate.jsx";
+import DoctorUpdate from "../views/administrar/doctor/DoctorUpdate.jsx";
+import DoctorDelete  from "../views/administrar/doctor/DoctorDelete.jsx";
 
 
 export const UserRoute = () => {
@@ -46,6 +50,12 @@ console.log("Este es el satus en SUerRoute " + status)
         <Route path="/administrar/paciente/crear" element={<PatientCreate />} />
         <Route path="/administrar/paciente/actualizar" element={<PatientUpdate />} />
         <Route path="/administrar/paciente/eliminar" element={<PatientDelete />} />
+
+         {/* ADMINISTRAR DOCTOR */}
+        {/* <Route path="/administrar/doctor" element={<SecretaryAdministrar />} /> */}
+        <Route path="/administrar/doctor/crear" element={<DoctorCreate />} />
+        <Route path="/administrar/doctor/actualizar" element={<DoctorUpdate />} />
+        <Route path="/administrar/doctor/eliminar" element={<DoctorDelete />} />
       </Routes>
     </>
   );

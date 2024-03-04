@@ -10,6 +10,8 @@ export default function Landing() {
     console.log("sessionStorage.getItem(st):" + sessionStorage.getItem("st"))
     
       navigate("/login");
+      window.location.reload();
+
     
   };
 

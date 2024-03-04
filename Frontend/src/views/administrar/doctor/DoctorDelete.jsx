@@ -4,7 +4,7 @@ import { UserHook } from "../../../context/UserContext";
 import styles from "./doctor.module.css";
 import { createSecretary } from "../../../data/HttpClient";
 
-const doctorInitial = {
+const patientInitial = {
   dni: 0,
   name: "",
   email: "",
@@ -15,7 +15,7 @@ const doctorInitial = {
   secretaryId: 0,  
 };
 
-export default function Patient() {
+export default function Delete() {
   const { patient, setPatient } = UserHook(); //Utilizo el hook personalizado
   const { dni, name, email, address, phoneNumber, birthDate, emergencyNumber, secretaryId } = patient;
 
@@ -24,7 +24,7 @@ export default function Patient() {
   const create = (event) => {
     createSecretary(patient)
       .then((data) => {
-        console.log("Patient create:", data);
+        console.log("Patinet create:", data);
         // window.location.reload();
       })
       .catch((error) => {
@@ -60,7 +60,7 @@ export default function Patient() {
         <div className={styles.sContainer}>
           <form onSubmit={create} className="row g-3">
             <div className={styles.tittle}>
-              <h1>CREAR PACIENTE</h1>
+              <h1>ELIMINAR DOCTOR</h1>
             </div>
             <div className="col-md-6">
               <label htmlFor="dni" className="form-label">

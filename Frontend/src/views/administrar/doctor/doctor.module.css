@@ -11,24 +11,19 @@
 
 .sContainer{
     
-    height: 90vh;
+    height: 90vh;   
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
-.sContainer {
-    height: 100vh; /* Ajusta la altura para ocupar toda la ventana gráfica */
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-}
+
 
 form {
-    width: 60%;
-    background-color: #7DA0CA;
-    color: white;
-    font-size: 1.5rem;
+    width: 50%;
+    background-color: #2768b7b0;
+    color: rgba(0, 0, 0, 0.71);
+    font-size: 1.0rem;
     padding: 20px; /* Agrega un poco de espacio alrededor del formulario */
     border-radius: 10px; /* Agrega bordes redondeados al formulario */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra al formulario */
@@ -37,7 +32,23 @@ label{
     color: rgba(0, 0, 0, 0.71);
 }
 
-    
+.tittle{
+    text-align: center;
+    margin: 0;
+   
+}
+.tittle h1{
+    color: rgba(1, 1, 32, 0.758);
+    box-shadow: 
+    0 0 10px rgba(0, 0, 0, 0.1), 
+    0 5px 15px rgba(0, 0, 0, 0.2);
+}
 
+input::placeholder {
+    font-size: 12px; /* Tamaño deseado del texto del placeholder */
+}
 
-
+.help{
+    color: black;
+    font-size: 70%;
+}
