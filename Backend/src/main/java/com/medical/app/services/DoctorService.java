@@ -37,7 +37,7 @@ public class DoctorService {
         newDoctor.setSchedule(doctorRequest.getSchedule());
         newDoctor.setLicenseNumber(doctorRequest.getLicenseNumber());
 
-        Optional<Secretary> optionalSecretary = secretaryRepository.findById(doctorRequest.getSecretaryId());
+        Optional<Secretary> optionalSecretary = secretaryRepository.findByDni(Math.toIntExact(doctorRequest.getSecretaryId()));
 
         if (!optionalSecretary.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró el secretario con ID: " + doctorRequest.getSecretaryId());

@@ -40,6 +40,7 @@ public class AppointmentController {
 
     @PostMapping
     public ResponseEntity<String> createAppointment(@RequestBody AppointmentRequest appointmentRequest) {
+        System.out.println("Datos del turno (front): " + appointmentRequest.toString() );
 
         Long doctorId = appointmentRequest.getDoctorId();
         Long patientId = appointmentRequest.getPatientId();

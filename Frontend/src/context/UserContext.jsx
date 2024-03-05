@@ -42,12 +42,22 @@ const doctorInitial = {
   licenseNumber:"",
   secretaryId: 0,
 };
+
+const appointmentsInitial = {
+  appointmentDate: "",
+  appointmentTime: "",
+  doctorId: 0,
+  patientId: 0,
+  description: ""
+};
+
 const UserProvider = ({ children }) => {
   const [status, setStatus] = useState(null);
   const [user, setUser] = useState(userInitial);
   const [secretary, setSecretary] = useState(secretaryInitial);
   const [patient, setPatient] = useState(patientInitial);
   const [doctor, setDoctor] = useState(doctorInitial);
+  const [ appointments, setAppointments ] = useState(appointmentsInitial);
 
   useEffect(() => {
     const storedStatus = sessionStorage.getItem("st");
@@ -61,7 +71,7 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ status, setStatus, user, setUser, secretary, setSecretary, patient, setPatient, doctor, setDoctor }}
+      value={{ status, setStatus, user, setUser, secretary, setSecretary, patient, setPatient, doctor, setDoctor, appointments, setAppointments }}
     >
       {status === null ? (
         <div>Cargando...</div> // Indicador de carga mientras se carga el estado

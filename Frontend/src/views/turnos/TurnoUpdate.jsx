@@ -1,7 +1,7 @@
-import { Navbar } from "../../../components/navbar/NavBar";
-import { UserHook } from "../../../context/UserContext";
-import styles from "./doctor.module.css";
-import { createDoctor, getSecretary } from "../../../data/HttpClient";
+import { Navbar } from "../../components/navbar/NavBar";
+import { UserHook } from "../../context/UserContext";
+import styles from "./turno.module.css";
+import { createDoctor, getSecretary } from "../../data/HttpClient";
 import { useEffect, useState } from "react";
 
 const doctorInitial = {
@@ -17,7 +17,7 @@ const doctorInitial = {
   secretaryId: 0,
 };
 
-export default function Create() {
+export default function Update() {
   const { doctor, setDoctor } = UserHook(); //Utilizo el hook personalizado
   const { dni, name, email, address, phoneNumber, licenseNumber } = doctor;
 

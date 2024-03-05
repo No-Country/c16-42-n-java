@@ -1,7 +1,7 @@
-import { Navbar } from "../../../components/navbar/NavBar";
-import { UserHook } from "../../../context/UserContext";
-import styles from "./doctor.module.css";
-import { createDoctor, getSecretary } from "../../../data/HttpClient";
+import { Navbar } from "../../components/navbar/NavBar";
+import { UserHook } from "../../context/UserContext";
+import styles from "./turno.module.css";
+import { createDoctor, getSecretary } from "../../data/HttpClient";
 import { useEffect, useState } from "react";
 
 const doctorInitial = {
@@ -17,9 +17,10 @@ const doctorInitial = {
   secretaryId: 0,
 };
 
-export default function Create() {
+export default function Delete() {
   const { doctor, setDoctor } = UserHook(); //Utilizo el hook personalizado
   const { dni, name, email, address, phoneNumber, licenseNumber } = doctor;
+  const [hora, setHora] = useState("");
 
   const [secretary, setSecretary] = useState([]); //Cargo la lista de Secretarios
 
@@ -27,6 +28,20 @@ export default function Create() {
   const [scheduleId, setScheduleId] = useState("");
   const [officeId, setOfficeId] = useState("");
   const [specialityId, setSpecialityId] = useState("");
+
+  // Horas que deseas deshabilitar
+  const horasHabilitadas = [
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "10:30",
+  ];
+
+  const handleHoraChange = (event) => {
+    setHora(event.target.value);
+  };
 
   useEffect(() => {
     const fetchSecretary = () => {
@@ -108,20 +123,21 @@ export default function Create() {
             <div className={styles.tittle}>
               <h1>CREAR DOCTOR</h1>
             </div>
-            <div className="col-md-6">
-              <label htmlFor="dni" className="form-label">
-                DNI
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="dni"
-                name="dni"
-                value={dni ? dni : ""}
-                required
-                placeholder="22222222"
-                onChange={doctorOnchange}
-              />
+            <div>
+              <label htmlFor="hora">Selecciona una hora:</label>
+              <select
+                id="hora"
+                name="hora"
+                value={hora}
+                onChange={handleHoraChange}
+              >
+                <option value="">Seleccionar hora...</option>
+                {horasHabilitadas.map((horaHabilitada, index) => (
+                  <option key={index} value={horaHabilitada}>
+                    {horaHabilitada}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="col-md-6">
               <label htmlFor="name" className="form-label">

@@ -1,65 +1,108 @@
-import { Navbar } from "../../../components/navbar/NavBar";
-import { UserHook } from "../../../context/UserContext";
-import styles from "./doctor.module.css";
-import { createDoctor, getSecretary } from "../../../data/HttpClient";
+import { Navbar } from "../../components/navbar/NavBar";
+import { UserHook } from "../../context/UserContext";
+import styles from "./turno.module.css";
+import {
+  createAppointments,
+  createDoctor,
+  getDoctor,
+  getPatient,
+  getSecretary,
+} from "../../data/HttpClient";
 import { useEffect, useState } from "react";
 
-const doctorInitial = {
-  dni: 0,
-  name: "",
-  email: "",
-  address: "",
-  phoneNumber: "",
-  speciality: "",
-  office: "",
-  schedule: "",
-  licenseNumber: "",
-  secretaryId: 0,
+const appointmentsInitial = {
+  appointmentDate: "",
+  appointmentTime: "",
+  doctorId: 0,
+  patientId: 0,
+  description: "",
 };
 
 export default function Create() {
-  const { doctor, setDoctor } = UserHook(); //Utilizo el hook personalizado
-  const { dni, name, email, address, phoneNumber, licenseNumber } = doctor;
+  const { appointments, setAppointments } = UserHook(); //Utilizo el hook personalizado
+  const {
+    appointmentDate,
+    appointmentTime,
+    doctorId: doc,
+    patientId: pat,
+    description,
+  } = appointments;
 
-  const [secretary, setSecretary] = useState([]); //Cargo la lista de Secretarios
+  const [doctor, setDoctor] = useState([]); //Cargo la lista de doctores
+  const [patient, setPatient] = useState([]); //Cargo la lista de pacientes
 
-  const [secretaryId, setSecretaryId] = useState(); //Guardo el Secretario Seleccionado
-  const [scheduleId, setScheduleId] = useState("");
-  const [officeId, setOfficeId] = useState("");
-  const [specialityId, setSpecialityId] = useState("");
+  const [doctorId, setDoctorId] = useState(); //Guardo el doctor Seleccionado
+  const [patientId, setPatientId] = useState(); //Guardo el paciente Seleccionado
+
+  // const [appointmentTimeId, setAppointmentTimeId] = useState("");
+
+  // const [officeId, setOfficeId] = useState("");
+  // const [specialityId, setSpecialityId] = useState("");
+
+  const [time, setTime] = useState("");
+
+  // Horas que deseas deshabilitar
+  const horasHabilitadas = [
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+  ];
 
   useEffect(() => {
-    const fetchSecretary = () => {
-      getSecretary()
+    const fetchPatient = () => {
+      getPatient()
         .then((data) => {
           // Maneja la respuesta del servidor aquí
-          setSecretary(data);
-          console.log("Lista de Secretarios:", secretary);
+          setPatient(data);
+          console.log("Lista de Pacientes:", patient);
         })
         .catch((error) => {
-          console.error("Error al Listar los secretarios:", error);
+          console.error("Error al Listar los pacientes:", error);
           // Maneja el error aquí
         });
     };
 
     // Llama a la función que obtiene los roles
-    fetchSecretary();
+    fetchPatient();
+  }, []);
+
+  useEffect(() => {
+    const fetchDoctor = () => {
+      getDoctor()
+        .then((data) => {
+          // Maneja la respuesta del servidor aquí
+          setDoctor(data);
+          console.log("Lista de Pacientes:", doctor);
+        })
+        .catch((error) => {
+          console.error("Error al Listar los pacientes:", error);
+          // Maneja el error aquí
+        });
+    };
+
+    // Llama a la función que obtiene los roles
+    fetchDoctor();
   }, []);
 
   const create = (event) => {
     event.preventDefault();
-    doctor.secretaryId = secretaryId;
-    doctor.office = officeId;
-    doctor.schedule = scheduleId;
-    doctor.speciality = specialityId;
-    createDoctor(doctor)
+    appointments.doctorId = doctorId;
+    appointments.patientId = patientId;
+    appointments.appointmentTime = time;
+
+    // appointments.schedule = scheduleId;
+    // appointments.speciality = specialityId;
+    createAppointments(appointments)
       .then((data) => {
-        console.log("Doctor create:", data);
+        console.log("Turno create:", data);
         window.location.reload();
       })
       .catch((error) => {
-        setDoctor(doctorInitial);
-        console.error("Error al crear el doctor:", error);
+        setAppointments(appointmentsInitial);
+        console.error("Error al crear el Turno:", error);
         // Maneja el error aquí
       });
 
@@ -67,37 +110,43 @@ export default function Create() {
       target: { name, value },
     } = event;
 
-    setDoctor({
+    setAppointments({
       [name]: value,
     });
     // setUser(userInitial);
   };
 
-  const doctorOnchange = ({ target: { name, value } }) => {
-    setDoctor({
-      ...doctor,
+  const appointmentsOnchange = ({ target: { name, value } }) => {
+    setAppointments({
+      ...appointments,
       [name]: value,
       //
     });
   };
 
-  const handleSecretaryChange = (event) => {
-    setSecretaryId(event.target.value);
+  const handleDoctorChange = (event) => {
+    setDoctorId(event.target.value);
   };
 
-  const handleOfficeChange = (event) => {
-    setOfficeId(event.target.value);
+  const handlePatientChange = (event) => {
+    setPatientId(event.target.value);
   };
 
-  const handleScheduleChange = (event) => {
-    setScheduleId(event.target.value);
+  const handleTimeChange = (event) => {
+    setTime(event.target.value);
   };
 
-  const handleSpecialityChange = (event) => {
-    setSpecialityId(event.target.value);
-  };
+  // const handleOfficeChange = (event) => {
+  //   setOfficeId(event.target.value);
+  // };
 
-  console.log("El id del secretario elegido es :" + secretaryId);
+  // const handleScheduleChange = (event) => {
+  //   setScheduleId(event.target.value);
+  // };
+
+  // const handleSpecialityChange = (event) => {
+  //   setSpecialityId(event.target.value);
+  // };
 
   return (
     <>
@@ -106,38 +155,94 @@ export default function Create() {
         <div className={styles.sContainer}>
           <form onSubmit={create} className="row g-3">
             <div className={styles.tittle}>
-              <h1>CREAR DOCTOR</h1>
+              <h1>SOLICITAR TURNO</h1>
             </div>
             <div className="col-md-6">
-              <label htmlFor="dni" className="form-label">
-                DNI
+              <label htmlFor="appointmentDate" className="form-label">
+                Fecha
               </label>
               <input
-                type="number"
+                type="Date"
                 className="form-control"
-                id="dni"
-                name="dni"
-                value={dni ? dni : ""}
+                id="appointmentDate"
+                name="appointmentDate"
+                value={appointmentDate}
                 required
-                placeholder="22222222"
-                onChange={doctorOnchange}
+                placeholder="2024-01-01"
+                onChange={appointmentsOnchange}
               />
             </div>
-            <div className="col-md-6">
-              <label htmlFor="name" className="form-label">
-                Nombre y Apellido
+            <div>
+              <label htmlFor="time">Hora:</label>
+              <select
+                id="time"
+                name="time"
+                value={time}
+                onChange={handleTimeChange}
+              >
+                <option value="">Hora</option>
+                {horasHabilitadas.map((horaHabilitada, index) => (
+                  <option key={index} value={horaHabilitada}>
+                    {horaHabilitada}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="col-md-4">
+              <label htmlFor="secretaryId" className="form-label">
+                Doctor
               </label>
-              <input
+              <select
+                onChange={handleDoctorChange}
+                value={doctorId}
+                required
+                className="form-select"
+              >
+                <option value="">Seleccionar ...</option>
+                {Array.isArray(doctor) &&
+                  doctor.map((r) => (
+                    <option key={r.id} value={r.id}>
+                      {r.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div className="col-md-4">
+              <label htmlFor="secretaryId" className="form-label">
+                Paciente
+              </label>
+              <select
+                onChange={handlePatientChange}
+                value={patientId}
+                required
+                className="form-select"
+              >
+                <option value="">Seleccionar ...</option>
+                {Array.isArray(patient) &&
+                  patient.map((r) => (
+                    <option key={r.id} value={r.id}>
+                      {r.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="description" className="form-label">
+                Descripción
+              </label>
+              <textarea
+                rows="5"
+                cols="50"
                 type="text"
                 className="form-control"
-                id="name"
-                name="name"
-                value={name}
-                placeholder="Francisco Alenda"
-                onChange={doctorOnchange}
-              />
+                id="description"
+                name="description"
+                value={description}
+                placeholder="Descripción ..."
+                onChange={appointmentsOnchange}
+              ></textarea>
             </div>
-            <div className="col-6">
+            {/* <div className="col-6">
               <label htmlFor="email" className="form-label">
                 email
               </label>
@@ -148,7 +253,7 @@ export default function Create() {
                 name="email"
                 value={email}
                 placeholder="nombre@nombre.com"
-                onChange={doctorOnchange}
+                onChange={appointmentsOnchange}
               />
             </div>
             <div className="col-6">
@@ -162,7 +267,7 @@ export default function Create() {
                 name="address"
                 value={address}
                 placeholder="Calle Siempre Viva - 2200 - Prov. de San Juan - Argentina"
-                onChange={doctorOnchange}
+                onChange={appointmentsOnchange}
               />
             </div>
             <div className="col-md-6">
@@ -176,7 +281,7 @@ export default function Create() {
                 name="phoneNumber"
                 value={phoneNumber}
                 placeholder="2644123833"
-                onChange={doctorOnchange}
+                onChange={appointmentsOnchange}
               />
               <div className={styles.help}>
                 * Télefono con Cod. de área sin 0 ni 15
@@ -253,7 +358,7 @@ export default function Create() {
                 name="licenseNumber"
                 value={licenseNumber}
                 placeholder="1234"
-                onChange={doctorOnchange}
+                onChange={appointmentsOnchange}
               />
             </div>
             <div className="col-md-4">
@@ -274,7 +379,7 @@ export default function Create() {
                     </option>
                   ))}
               </select>
-            </div>
+            </div> */}
             <div className="col-12">
               <button type="submit" className="btn btn-primary">
                 Crear

@@ -16,6 +16,7 @@ const userInitial = {
 export default function Login() {
   const { status, setStatus, user, setUser } = UserHook(); //Utilizo el hook personalizado
 
+
   const [roles, setRoles] = useState([]);
 
   const { name, lastname, username, password, rol } = user;
@@ -129,6 +130,8 @@ export default function Login() {
     // Almacena el valor del rol actualizado en sessionStorage
   sessionStorage.setItem("rol", selectedRol);
   };
+
+
 
   return (
     <>

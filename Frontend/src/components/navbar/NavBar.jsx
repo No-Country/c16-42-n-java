@@ -3,7 +3,8 @@ import { UserHook } from "../../context/UserContext";
 import "./NavBar.css";
 
 export const Navbar = () => {
-  const { status, setStatus, user } = UserHook();
+
+  const { status, setStatus, user, setUser } = UserHook();
   const { rol } = user;
 
   console.log("El rol rol  del NavBar es: " + user.rol)
@@ -22,7 +23,9 @@ export const Navbar = () => {
     }
   };
 console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")));
-  return (
+
+
+return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
@@ -64,20 +67,24 @@ console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")
                       Consultar
                     </a>
                   </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
+                 
                   <li>
                     <a className="dropdown-item" href="/turnos/solicitar">
                     Solicitar
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a className="dropdown-item" href="/turnos/modificar">
+                    Modificar
                     </a>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="/turnos/modificar">
-                    Modificar
+                    <a className="dropdown-item" href="/turnos/eliminar">
+                    Eliminar
                     </a>
                   </li>
                 </ul>
@@ -118,9 +125,7 @@ console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")
                   </li>
                 </ul>
               </li>
-
-              {rol == "ADMINISTRADOR" ? 
-              (<li className="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="#"
@@ -175,12 +180,12 @@ console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/administrar/doctor/crear">
                           Crear Doctor
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/administrar/doctor/actualizar">
                           Modificar Doctor
                         </a>
                       </li>
@@ -188,13 +193,12 @@ console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/administrar/doctor/eliminar">
                           Eliminar Doctor
                         </a>
                       </li>
                     </ul>
                   </li>
-
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
@@ -207,12 +211,12 @@ console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/administrar/paciente/crear">
                           Crear Paciente
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/administrar/paciente/actualizar">
                           Modificar Paciente
                         </a>
                       </li>
@@ -220,7 +224,7 @@ console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <a className="dropdown-item" href="/administrar/paciente/eliminar">
                           Eliminar Paciente
                         </a>
                       </li>
@@ -258,12 +262,8 @@ console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")
                       </li>
                     </ul>
                   </li>
-
-
                 </ul>
-              </li>)
-              :
-              ("")}
+              </li>
             </ul>
           </div>
           <button
