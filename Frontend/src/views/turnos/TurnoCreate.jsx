@@ -97,6 +97,9 @@ export default function Create() {
     // appointments.speciality = specialityId;
     createAppointments(appointments)
       .then((data) => {
+        if (!data.ok) {
+          throw new Error('Error al crear el turno');
+        }
         console.log("Turno create:", data);
         window.location.reload();
       })

@@ -16,7 +16,6 @@ const userInitial = {
 export default function Login() {
   const { status, setStatus, user, setUser } = UserHook(); //Utilizo el hook personalizado
 
-
   const [roles, setRoles] = useState([]);
 
   const { name, lastname, username, password, rol } = user;
@@ -37,7 +36,7 @@ export default function Login() {
 
         setStatus(JSON.parse(sessionStorage.getItem("st")));
         setUser(JSON.parse(sessionStorage.getItem("user")));
-        
+
         navigate("/info");
         // Maneja la respuesta del servidor aquí
       })
@@ -60,19 +59,20 @@ export default function Login() {
   const create = (event) => {
     createUser(user)
       .then((data) => {
+        sessionStorage.clear();
         console.log("Usuario creado:", data);
-        // sessionStorage.setItem("st", "true");
-        setStatus(sessionStorage.getItem("st"));
         navigate("/login");
         window.location.reload();
 
         // Maneja la respuesta del servidor aquí
       })
       .catch((error) => {
-        setUser(userInitial);
-        setMessage("Usuario o Contraseña inválidos");
+        //setUser(userInitial);
+        setMessage("El nombre de usuario ya existe. Elije uno nuevo");
         console.error("Error al crear el usuario en login:", error);
+        sessionStorage.clear();
         // Maneja el error aquí
+        setUser(userInitial);
       });
 
     const {
@@ -128,10 +128,8 @@ export default function Login() {
       rol: selectedRol,
     }));
     // Almacena el valor del rol actualizado en sessionStorage
-  sessionStorage.setItem("rol", selectedRol);
+    sessionStorage.setItem("rol", selectedRol);
   };
-
-
 
   return (
     <>
@@ -196,6 +194,7 @@ export default function Login() {
             </div>
 
             <button className="submit-btn">Registrate</button>
+            <div className="msgErrorCreate">{message}</div>
           </div>
         </form>
 

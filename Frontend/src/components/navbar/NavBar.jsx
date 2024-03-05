@@ -2,12 +2,19 @@ import { useNavigate } from "react-router-dom";
 import { UserHook } from "../../context/UserContext";
 import "./NavBar.css";
 
-export const Navbar = () => {
+const userInitial = {
+  name: "",
+  lastname: "",
+  username: "",
+  password: "",
+  rol: "",
+};
 
+export const Navbar = () => {
   const { status, setStatus, user, setUser } = UserHook();
   const { rol } = user;
 
-  console.log("El rol rol  del NavBar es: " + user.rol)
+  console.log("El rol rol  del NavBar es: " + user.rol);
 
   const navigate = useNavigate();
 
@@ -17,15 +24,14 @@ export const Navbar = () => {
     if (status) {
       // sessionStorage.setItem("st", "false");
       sessionStorage.clear();
+      setUser(userInitial);
       setStatus(false);
       navigate("/login");
       console.log("Estoy en changeStatus " + status);
     }
   };
-console.log("El rol actualizado es: " + JSON.parse(sessionStorage.getItem("rol")));
 
-
-return (
+  return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
@@ -67,16 +73,16 @@ return (
                       Consultar
                     </a>
                   </li>
-                 
+
                   <li>
                     <a className="dropdown-item" href="/turnos/solicitar">
-                    Solicitar
+                      Solicitar
                     </a>
                   </li>
-                  
+
                   <li>
                     <a className="dropdown-item" href="/turnos/modificar">
-                    Modificar
+                      Modificar
                     </a>
                   </li>
                   <li>
@@ -84,12 +90,11 @@ return (
                   </li>
                   <li>
                     <a className="dropdown-item" href="/turnos/eliminar">
-                    Eliminar
+                      Eliminar
                     </a>
                   </li>
                 </ul>
               </li>
-
 
               <li className="nav-item dropdown">
                 <a
@@ -148,12 +153,18 @@ return (
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="/administrar/secretaria/crear">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/secretaria/crear"
+                        >
                           Crear Secretario
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/administrar/secretaria/actualizar">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/secretaria/actualizar"
+                        >
                           Modificar Secretario
                         </a>
                       </li>
@@ -161,7 +172,10 @@ return (
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/administrar/secretaria/eliminar">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/secretaria/eliminar"
+                        >
                           Eliminar Secretario
                         </a>
                       </li>
@@ -180,12 +194,18 @@ return (
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="/administrar/doctor/crear">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/doctor/crear"
+                        >
                           Crear Doctor
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/administrar/doctor/actualizar">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/doctor/actualizar"
+                        >
                           Modificar Doctor
                         </a>
                       </li>
@@ -193,7 +213,10 @@ return (
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/administrar/doctor/eliminar">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/doctor/eliminar"
+                        >
                           Eliminar Doctor
                         </a>
                       </li>
@@ -211,12 +234,18 @@ return (
                     </a>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="/administrar/paciente/crear">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/paciente/crear"
+                        >
                           Crear Paciente
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/administrar/paciente/actualizar">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/paciente/actualizar"
+                        >
                           Modificar Paciente
                         </a>
                       </li>
@@ -224,7 +253,10 @@ return (
                         <hr className="dropdown-divider" />
                       </li>
                       <li>
-                        <a className="dropdown-item" href="/administrar/paciente/eliminar">
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/paciente/eliminar"
+                        >
                           Eliminar Paciente
                         </a>
                       </li>

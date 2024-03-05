@@ -54,6 +54,9 @@ export default function Create() {
     doctor.speciality = specialityId;
     createDoctor(doctor)
       .then((data) => {
+        if (!data.ok) {
+          throw new Error('Error al crear el doctor');
+        }
         console.log("Doctor create:", data);
         window.location.reload();
       })

@@ -9,7 +9,7 @@ html, body {
     align-content: stretch;
     justify-content: flex-end;
     align-items: stretch;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 
