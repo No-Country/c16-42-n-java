@@ -9,6 +9,8 @@ html, body {
     align-content: stretch;
     justify-content: flex-end;
     align-items: stretch;
+    scrollbar-width: none;
+    
     /* overflow: hidden; */
 }
 

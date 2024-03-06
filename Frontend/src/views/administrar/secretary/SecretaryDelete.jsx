@@ -24,7 +24,8 @@ export default function Delete() {
     createSecretary(secretary)
       .then((data) => {
         console.log("Secretary create:", data);
-        // window.location.reload();
+        navigate("/info")
+        window.location.reload();
       })
       .catch((error) => {
         setSecretary(secretaryInitial);

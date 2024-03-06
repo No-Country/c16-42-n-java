@@ -34,14 +34,7 @@ html, body {
     text-shadow: 1px 1px 5px rgba(248, 176, 8, 0.9);
 }
 
-img{
-    width: 5%;
-    margin-right: 0.5%;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2),
-            0 5px 15px rgba(0, 0, 0, 0.4),
-            inset 0 0 20px rgba(255, 255, 255, 0.3);
-}
+
 
 .text-ptn-color-gsj-brand {
     --bs-text-opacity: 1;

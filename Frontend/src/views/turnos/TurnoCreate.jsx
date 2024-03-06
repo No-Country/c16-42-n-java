@@ -3,12 +3,11 @@ import { UserHook } from "../../context/UserContext";
 import styles from "./turno.module.css";
 import {
   createAppointments,
-  createDoctor,
   getDoctor,
   getPatient,
-  getSecretary,
 } from "../../data/HttpClient";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const appointmentsInitial = {
   appointmentDate: "",
@@ -50,6 +49,8 @@ export default function Create() {
     "11:00",
     "11:30",
   ];
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPatient = () => {
@@ -101,6 +102,7 @@ export default function Create() {
           throw new Error('Error al crear el turno');
         }
         console.log("Turno create:", data);
+        navigate("/turno")
         window.location.reload();
       })
       .catch((error) => {

@@ -174,3 +174,12 @@ export const createAppointments = async (appointmentsData) => {
     throw error; // Lanzamos el error para que sea manejado por el código que llama a esta función
   }
 };
+
+export const getAppointmentsListDetails = async () => {
+  const result = await fetch(API_APPOINTMENTS + "/details", {
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+  return await result.json();
+};

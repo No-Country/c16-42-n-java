@@ -3,6 +3,7 @@ package com.medical.app.services;
 import com.medical.app.models.Appointment;
 import com.medical.app.models.Patient;
 import com.medical.app.models.request.AppointmentCancelRequest;
+import com.medical.app.models.response.AppointmentResponseDetails;
 import com.medical.app.models.response.DoctorAppointmentResponse;
 import com.medical.app.repository.AppointmentRepository;
 import com.medical.app.repository.DoctorRepository;
@@ -15,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +25,42 @@ public class AppointmentService {
     @Autowired
     private AppointmentRepository appointmentRepository;
     @Autowired
-    private DoctorRepository doctorRepository;
+    private DoctorRepository      doctorRepository;
     @Autowired
-    private PatientRepository patientRepository;
+    private PatientRepository     patientRepository;
+
+    public List<Appointment> getAllAppointments() {
+
+        return appointmentRepository.findAll();
+
+    }
+
+    public List<AppointmentResponseDetails> getAllAppointmentsDetails() {
+        List<Appointment> appointmentBd = appointmentRepository.findAll();
+        List<AppointmentResponseDetails> appointmentResponseList = new ArrayList<>();
+
+        appointmentBd.forEach((ap) -> {
+            AppointmentResponseDetails appointmentResponseDetails = new AppointmentResponseDetails();
+
+            appointmentResponseDetails.setId(ap.getId());
+            appointmentResponseDetails.setAppointmentDate(ap.getDate());
+            appointmentResponseDetails.setAppointmentTime(ap.getTime());
+            appointmentResponseDetails.setDoctor(ap.getDoctor().getName());
+            appointmentResponseDetails.setPatient(ap.getPatient().getName());
+            appointmentResponseDetails.setReminder(ap.getReminder());
+            appointmentResponseDetails.setStatus(ap.getStatus());
+
+            appointmentResponseList.add(appointmentResponseDetails);
+
+            System.out.println(appointmentResponseDetails.toString());
+
+        });
+
+
+
+        return appointmentResponseList;
+
+    }
 
     public void createAppointment(Appointment appointment) {
         // Aquí puedes realizar validaciones adicionales antes de guardar la cita
@@ -52,7 +87,7 @@ public class AppointmentService {
         List<Appointment> appointmentsOnDate = appointmentRepository.findByDoctorIdAndDate(doctorId, appointmentDate);
         // Verificar si ya existe una cita para el médico en la fecha y hora dadas
         return appointmentsOnDate.stream()
-                .anyMatch(appointment -> appointment.getTime().equals(adjustedTime));
+          .anyMatch(appointment -> appointment.getTime().equals(adjustedTime));
     }
 /*
     public boolean isDateTimeAvailable(Long doctorId, LocalDate date, LocalTime time) {
@@ -78,7 +113,7 @@ public class AppointmentService {
 
         if (patient != null) {
             Appointment appointment = appointmentRepository.findByPatientIdAndDateAndTime(
-                    patient.getId(), appointmentDate, appointmentTime);
+              patient.getId(), appointmentDate, appointmentTime);
 
             if (appointment != null) {
                 // Establecer el estado de la cita como cancelada
@@ -88,7 +123,7 @@ public class AppointmentService {
                 appointmentRepository.save(appointment);
             } else {
                 throw new EntityNotFoundException("No se encontró una cita para el paciente con DNI: " + patientDni +
-                        " en la fecha y hora especificadas.");
+                  " en la fecha y hora especificadas.");
             }
         } else {
             throw new EntityNotFoundException("No se encontró al paciente con DNI: " + patientDni);
@@ -100,10 +135,6 @@ public class AppointmentService {
 
     }
 
-    public List<Appointment> getAllAppointments() {
-        return appointmentRepository.findAll();
-
-    }
 
     public void deleteAppointment(Long appointmentId) {
         Optional<Appointment> appointmentOptional = appointmentRepository.findById(appointmentId);

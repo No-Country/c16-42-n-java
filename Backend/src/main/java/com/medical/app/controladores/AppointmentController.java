@@ -26,7 +26,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/appointments")
+    @RequestMapping("/appointments")
 @CrossOrigin ("http://localhost:5173")
 public class AppointmentController {
 
@@ -37,6 +37,11 @@ public class AppointmentController {
 
     @Autowired
     private PatientService patientService;
+
+    @GetMapping("/details") //Devuelve la lista pero con detalle
+    public ResponseEntity<?> getAllAppointmentsDetails() {
+        return ResponseEntity.ok(appointmentService.getAllAppointmentsDetails());
+    }
 
     @PostMapping
     public ResponseEntity<String> createAppointment(@RequestBody AppointmentRequest appointmentRequest) {

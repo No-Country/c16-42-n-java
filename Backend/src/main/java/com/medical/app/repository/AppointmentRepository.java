@@ -15,6 +15,7 @@ import java.util.List;
 
 @Repository
 public interface AppointmentRepository extends CrudRepository<Appointment,Long> {
+
     List<Appointment> findAll();
 
     boolean existsByPatientIdAndDateAndTime(Long patientId, LocalDate date, LocalTime time);

@@ -24,7 +24,8 @@ export default function Create() {
     createSecretary(secretary)
       .then((data) => {
         console.log("Secretary create:", data);
-        // window.location.reload();
+        navigate("/info")
+        window.location.reload();
       })
       .catch((error) => {
         setSecretary(secretaryInitial);
@@ -88,6 +89,7 @@ export default function Create() {
                 value={name}
                 placeholder="Francisco Alenda"
                 onChange={secretaryOnchange}
+                required
               />
             </div>
             <div className="col-6">
@@ -102,6 +104,7 @@ export default function Create() {
                 value={email}
                 placeholder="nombre@nombre.com"
                 onChange={secretaryOnchange}
+                required
               />
             </div>
             <div className="col-6">
@@ -116,6 +119,7 @@ export default function Create() {
                 value={address}
                 placeholder="Calle Siempre Viva - 2200 - Prov. de San Juan - Argentina"
                 onChange={secretaryOnchange}
+                required
               />
             </div>
             <div className="col-md-6">
@@ -130,6 +134,7 @@ export default function Create() {
                 value={phoneNumber}
                 placeholder="2644123833"
                 onChange={secretaryOnchange}
+                required
               />
               <div className={styles.help}>
                 Télefono con Cod. de área sin 0 ni 15
@@ -147,6 +152,7 @@ export default function Create() {
                 value={area}
                 placeholder="Traumatología, Fonodiología, ..."
                 onChange={secretaryOnchange}
+                required
               />
             </div>
             {/* <div className="col-md-4">

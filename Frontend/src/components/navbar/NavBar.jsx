@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { UserHook } from "../../context/UserContext";
 import "./NavBar.css";
+import styles from "./NavBar.module.css";
 
 const userInitial = {
   name: "",
@@ -35,7 +36,7 @@ export const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <img src="/public/img/logo2.svg" />
+          <img className={styles.imgLogout} src="/public/img/logo2.svg" />
 
           <button
             className="navbar-toggler"
@@ -65,15 +66,9 @@ export const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Turnos ...
+                  Turnos
                 </a>
                 <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="/turnos/buscar">
-                      Consultar
-                    </a>
-                  </li>
-
                   <li>
                     <a className="dropdown-item" href="/turnos/solicitar">
                       Solicitar
@@ -86,12 +81,46 @@ export const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
                     <a className="dropdown-item" href="/turnos/eliminar">
                       Eliminar
                     </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li className="nav-item dropdown">
+                    <label className="dropdown-item" href="/turnos/buscar">
+                      VER ASIGNADOS
+                    </label>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          href="/turnos/ver-todos"
+                        >
+                          Todos
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/secretaria/actualizar"
+                        >
+                          Por Paciente
+                        </a>
+                      </li>
+                      {/* <li>
+                        <hr className="dropdown-divider" />
+                      </li> */}
+                      <li>
+                        <a
+                          className="dropdown-item"
+                          href="/administrar/secretaria/eliminar"
+                        >
+                          Por Médico
+                        </a>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </li>
@@ -104,7 +133,7 @@ export const Navbar = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Buscar ...
+                  Buscar
                 </a>
                 <ul className="dropdown-menu">
                   <li>

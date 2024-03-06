@@ -58,6 +58,7 @@ const UserProvider = ({ children }) => {
   const [patient, setPatient] = useState(patientInitial);
   const [doctor, setDoctor] = useState(doctorInitial);
   const [ appointments, setAppointments ] = useState(appointmentsInitial);
+  
 
   useEffect(() => {
     const storedStatus = sessionStorage.getItem("st");

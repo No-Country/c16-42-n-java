@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Landing from "../views/landing/landing.jsx";
-import Info from "../views/buscar/secretary/Secretary.jsx";
+import Info from "../views/info/info.jsx";
 import { UserHook } from "../context/UserContext.jsx";
 import Patient from "../views/buscar/patient/Patient.jsx";
 import Doctor from "../views/buscar/doctor/Doctor.jsx";
@@ -20,10 +20,11 @@ import DoctorCreate from "../views/administrar/doctor/DoctorCreate.jsx";
 import DoctorUpdate from "../views/administrar/doctor/DoctorUpdate.jsx";
 import DoctorDelete from "../views/administrar/doctor/DoctorDelete.jsx";
 // import PatientAdministrar from "../views/administrar/patient/DoctorAdministrar.jsx";
+import Turno from "../views/turnos/Turno.jsx";
 import TurnoCreate from "../views/turnos/TurnoCreate.jsx";
-import TurnoSearch from "../views/turnos/TurnoSearch.jsx";
 import TurnoUpdate from "../views/turnos/TurnoUpdate.jsx";
 import TurnoDelete from "../views/turnos/TurnoDelete.jsx";
+import TurnoListAll from "../views/turnos/TurnoListAll.jsx";
 
 export const UserRoute = () => {
   const { status } = UserHook(); //Utilizo el hook personalizado
@@ -78,7 +79,8 @@ export const UserRoute = () => {
         <Route path="/turnos/solicitar" element={<TurnoCreate />} />
         <Route path="/turnos/modificar" element={<TurnoUpdate />} />
         <Route path="/turnos/eliminar" element={<TurnoDelete />} />
-        <Route path="/turnos/buscar" element={<TurnoSearch />} />
+        <Route path="/turnos/ver-todos" element={<TurnoListAll />} />
+        <Route path="/turnos" element={<Turno />} />
       </Routes>
     </>
   );

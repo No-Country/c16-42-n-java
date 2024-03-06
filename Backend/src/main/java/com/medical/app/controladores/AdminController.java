@@ -17,6 +17,7 @@ public class AdminController {
 
     @GetMapping
     public ResponseEntity<?> findByUser(@RequestBody Admin user) {
+        System.out.println("datos del usuario: " + user.toString());
         return ResponseEntity.status(HttpStatus.OK).body(adminService.findAdmin(user));
     }
     @PostMapping
