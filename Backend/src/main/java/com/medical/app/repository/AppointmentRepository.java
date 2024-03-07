@@ -34,4 +34,6 @@ public interface AppointmentRepository extends CrudRepository<Appointment,Long> 
     List<DoctorAppointmentResponse> findAvailableDoctorsBySpecialtyAndDateTime(@Param("specialty") String specialty,
                                                                                @Param("appointmentDate") LocalDate appointmentDate,
                                                                                @Param("appointmentTime") LocalTime appointmentTime);
+
+    List<Appointment> findByPatientId(Long id);
 }

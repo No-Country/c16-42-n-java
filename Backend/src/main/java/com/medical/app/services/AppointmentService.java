@@ -3,6 +3,7 @@ package com.medical.app.services;
 import com.medical.app.models.Appointment;
 import com.medical.app.models.Patient;
 import com.medical.app.models.request.AppointmentCancelRequest;
+import com.medical.app.models.response.AppointmentResponse;
 import com.medical.app.models.response.AppointmentResponseDetails;
 import com.medical.app.models.response.DoctorAppointmentResponse;
 import com.medical.app.repository.AppointmentRepository;
@@ -19,6 +20,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import com.medical.app.models.response.AppointmentResponse;
 
 @Service
 public class AppointmentService {
@@ -145,4 +147,33 @@ public class AppointmentService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró la cita con ID: " + appointmentId);
         }
     }
+
+
+    public List<AppointmentResponse> getAppointmentResponsesByPatientDni(int patientDni) {
+        Patient patient = patientRepository.findByDni(patientDni);
+
+        if (patient != null) {
+            List<Appointment> appointments = appointmentRepository.findByPatientId(patient.getId());
+            List<AppointmentResponse> appointmentResponses = new ArrayList<>();
+
+            for (Appointment appointment : appointments) {
+                AppointmentResponse response = AppointmentResponse.builder()
+                        .id(appointment.getId())
+                        .appointmentDate(appointment.getDate())
+                        .appointmentTime(appointment.getTime())
+                        .doctorId(appointment.getDoctor().getId())
+                        .patientId(appointment.getPatient().getId())
+                        .reminder(appointment.getReminder())
+                        .status(appointment.getStatus())
+                        .build();
+
+                appointmentResponses.add(response);
+            }
+
+            return appointmentResponses;
+        } else {
+            throw new EntityNotFoundException("No se encontró al paciente con DNI: " + patientDni);
+        }
+    }
+
 }
