@@ -1,27 +1,119 @@
 import { Navbar } from "../../components/navbar/NavBar";
 import styles from "./turno.module.css";
-import { getAppointmentsListDetails } from "../../data/HttpClient";
+import { TurnoFindAll } from "../../components/turnoSearch/TurnoFindAll";
+import { TurnoFindDoctor } from "../../components/turnoSearch/TurnoFindDoctor";
+import { TurnoFindPatient } from "../../components/turnoSearch/TurnoFindPatient";
+import { UserHook } from "../../context/UserContext";
 import { useEffect, useState } from "react";
+import { getDoctorDni, getPatientDni } from "../../data/HttpClient";
+
+const initialStatusFind = {
+  isFindAll: false,
+  isFindDoctor: false,
+  isFindPatient: true,
+};
 
 export default function TurnoListAll() {
-  const [appointmentsListDetails, setAppointmentsListDetails] = useState([]);
+  const [statusFind, setStatusFind] = useState(initialStatusFind);
+  const { isFindAll, isFindDoctor, isFindPatient } = statusFind;
 
-  useEffect(() => {
-    const fetchSecretary = () => {
-      getAppointmentsListDetails()
-        .then((data) => {
-          // Maneja la respuesta del servidor aquí
-          setAppointmentsListDetails(data);
-        })
-        .catch((error) => {
-          console.error("Error al Listar los Turnos con detalles:", error);
-          // Maneja el error aquí
-        });
-    };
+  const { setDoctorFindDni } = UserHook();
+  const { doctorDni, setDoctorDni } = UserHook();
 
-    // Llama a la función que obtiene los roles
-    fetchSecretary();
-  }, []);
+  const { setPatientFindDni } = UserHook();
+  const { patientDni, setPatientDni } = UserHook();
+
+  const enviarDoctor = (event) => {
+    getDoctorDni(doctorDni)
+      .then((data) => {
+        showDoctor();
+        console.log("El doctor es: ", data);
+
+        // Maneja la respuesta del servidor aquí
+      })
+      .catch((error) => {
+        // setDoctorFindDni(userInitial);
+        // setMessage("Usuario o Contraseña inválidos");
+        // console.error("Error al crear el usuario en login:", error);
+        // Maneja el error aquí
+      });
+
+    const {
+      target: { name, value },
+    } = event;
+    event.preventDefault();
+    setDoctorFindDni({
+      [name]: value,
+    });
+    // setUser(userInitial);
+  };
+
+  const enviarPatient = (event) => {
+    getPatientDni(patientDni)
+      .then((data) => {
+        showPatient();
+        console.log("Que valor tiene" +isFindPatient)
+        console.log("El paciente es: ", data);
+
+        // Maneja la respuesta del servidor aquí
+      })
+      .catch((error) => {
+        // setDoctorFindDni(userInitial);
+        // setMessage("Usuario o Contraseña inválidos");
+        // console.error("Error al crear el usuario en login:", error);
+        // Maneja el error aquí
+      });
+
+    const {
+      target: { name, value },
+    } = event;
+    event.preventDefault();
+    setPatientDni({
+      [name]: value,
+    });
+    // setUser(userInitial);
+  };
+
+  //Doctor
+  const handleDoctorOnChange = (event) => {
+    setDoctorDni(event.target.value);
+    console.log("El doctor en el handler es: ", doctorDni);
+  };
+
+  useEffect(
+    () => console.log("El doctor en el handler es: ", doctorDni),
+    [doctorDni]
+  );
+
+  //Paciente
+  const handlePatientOnChange = (event) => {
+    setPatientDni(event.target.value);
+    console.log("El paciente en el handler es: ", patientDni);
+  };
+
+  useEffect(
+    () => console.log("El paciente en el handler es: ", patientDni),
+    [patientDni]
+  );
+
+  //status para ocultar
+  const showDoctor = () => {
+    setStatusFind((prevStatus)=>({
+      ...prevStatus,
+      isFindAll: false,
+      isFindDoctor: true,
+      isFindPatient: false,
+    }));
+  };
+
+  const showPatient = () => {
+    setStatusFind((prevStatus)=>({
+      ...prevStatus,
+      isFindAll: false,
+      isFindDoctor: false,
+      isFindPatient: true,
+    }));
+  };
 
   return (
     <>
@@ -32,28 +124,61 @@ export default function TurnoListAll() {
             <div className={styles.tittle}>
               <h1>LISTA DE TURNOS ASIGNADOS</h1>
             </div>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Fecha</th>
-                  <th scope="col">Hora</th>
-                  <th scope="col">Doctor</th>
-                  <th scope="col">Paciente</th>
-                </tr>
-              </thead>
-              <tbody>
-                {appointmentsListDetails.map((m)=>
-                <tr key={m.id}>
-                  <th scope="row">{m.id}</th>
-                  <td>{m.appointmentDate}</td>
-                  <td>{m.appointmentTime}</td>
-                  <td>{m.doctor}</td>
-                  <td>{m.patient}</td>
-                </tr>
-                )}
-              </tbody>
-            </table>
+            <div className="row">
+              <div className="col">
+                <form className={styles["form-list"]} onSubmit={enviarPatient}>
+                  <div className={styles["form-search"]}>
+                    Buscar por Paciente
+                  </div>
+                  <div className={`${styles.input} m-0`}>
+                    <input
+                      type="number"
+                      placeholder="Ingrese DNI (sin puntos)"
+                      id="patientDni"
+                      name="patientDni"
+                      value={patientDni}
+                      onChange={handlePatientOnChange}
+                    />
+                    <button type="submit">
+                      <img src="/public/img/search.png" />
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div className="col">
+                <form className={styles["form-list"]} onSubmit={enviarDoctor}>
+                  <div className={styles["form-search"]}>Buscar por Doctor</div>
+                  <div className={`${styles.input} m-0`}>
+                    <input
+                      type="number"
+                      placeholder="Ingrese DNI (sin puntos)"
+                      id="doctorDni"
+                      name="doctorDni"
+                      value={doctorDni}
+                      onChange={handleDoctorOnChange}
+                    />
+                    <button>
+                      <img src="/public/img/search.png" />
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            {isFindAll== true && isFindDoctor==false && isFindPatient==false ? (
+              <TurnoFindAll />
+            ) : (
+              ""
+            )}
+           {isFindAll== false && isFindDoctor==true && isFindPatient==false ? (
+              <TurnoFindDoctor />
+            ) : (
+              ""
+            )}
+            {isFindAll== false && isFindDoctor==false && isFindPatient==true ? (
+              <TurnoFindPatient />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

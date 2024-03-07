@@ -27,7 +27,7 @@ const patientInitial = {
   phoneNumber: "",
   birthDate: "000-00-00",
   emergencyNumber: "",
-  secretaryId: 0,  
+  secretaryId: 0,
 };
 
 const doctorInitial = {
@@ -36,10 +36,10 @@ const doctorInitial = {
   email: "",
   address: "",
   phoneNumber: "",
-  speciality:"",
-  office:"",
-  schedule:"",
-  licenseNumber:"",
+  speciality: "",
+  office: "",
+  schedule: "",
+  licenseNumber: "",
   secretaryId: 0,
 };
 
@@ -48,7 +48,7 @@ const appointmentsInitial = {
   appointmentTime: "",
   doctorId: 0,
   patientId: 0,
-  description: ""
+  description: "",
 };
 
 const UserProvider = ({ children }) => {
@@ -57,8 +57,14 @@ const UserProvider = ({ children }) => {
   const [secretary, setSecretary] = useState(secretaryInitial);
   const [patient, setPatient] = useState(patientInitial);
   const [doctor, setDoctor] = useState(doctorInitial);
-  const [ appointments, setAppointments ] = useState(appointmentsInitial);
-  
+  const [appointments, setAppointments] = useState(appointmentsInitial);
+
+  //Para buscar en formulario de Turno
+  const [doctorFindDni, setDoctorFindDni] = useState(doctorInitial);
+  const [doctorDni, setDoctorDni] = useState("");
+
+  const [patientFindDni, setPatientFindDni] = useState(patientInitial);
+  const [patientDni, setPatientDni] = useState("");
 
   useEffect(() => {
     const storedStatus = sessionStorage.getItem("st");
@@ -72,7 +78,28 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ status, setStatus, user, setUser, secretary, setSecretary, patient, setPatient, doctor, setDoctor, appointments, setAppointments }}
+      value={{
+        status,
+        setStatus,
+        user,
+        setUser,
+        secretary,
+        setSecretary,
+        patient,
+        setPatient,
+        doctor,
+        setDoctor,
+        appointments,
+        setAppointments,
+        doctorFindDni,
+        setDoctorFindDni,
+        patientFindDni,
+        setPatientFindDni,
+        doctorDni,
+        setDoctorDni,
+        patientDni,
+        setPatientDni,
+      }}
     >
       {status === null ? (
         <div>Cargando...</div> // Indicador de carga mientras se carga el estado

@@ -18,7 +18,7 @@ export default function Landing() {
   return (
     <>
       <NavBarLanding />
-      <div>
+      <div className="container">
         <div className="section section--header">
           <h1 className="section__title">Turnos Online</h1>
         </div>

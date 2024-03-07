@@ -98,16 +98,14 @@ export default function Create() {
     // appointments.speciality = specialityId;
     createAppointments(appointments)
       .then((data) => {
-        if (!data.ok) {
-          throw new Error('Error al crear el turno');
-        }
         console.log("Turno create:", data);
-        navigate("/turno")
-        window.location.reload();
+        navigate("/info");
+        // window.location.reload();
       })
       .catch((error) => {
         setAppointments(appointmentsInitial);
         console.error("Error al crear el Turno:", error);
+        navigate("/info");
         // Maneja el error aquí
       });
 
@@ -184,6 +182,7 @@ export default function Create() {
                 name="time"
                 value={time}
                 onChange={handleTimeChange}
+                required
               >
                 <option value="">Hora</option>
                 {horasHabilitadas.map((horaHabilitada, index) => (

@@ -53,8 +53,11 @@ public class DoctorController {
         return ResponseEntity.ok().body("doctor deleted with exit");
     }
 
-    @GetMapping("/dni/{dni}")
-    public ResponseEntity<DoctorResponseCompleto> getDoctorByDni(@RequestParam int dni){
+    @GetMapping("/dni/{dniString}")
+    public ResponseEntity<DoctorResponseCompleto> getDoctorByDni(@PathVariable String dniString){
+        System.err.println("*************El dni del paciente es: " + dniString +" ***************** ");
+
+        int dni = Integer.parseInt(dniString);
         return ResponseEntity.ok().body(doctorService.getDoctorByDni(dni));
     }
 }

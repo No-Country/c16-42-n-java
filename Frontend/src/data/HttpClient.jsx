@@ -124,6 +124,17 @@ export const getPatient = async () => {
   return await result.json();
 };
 
+export const getPatientDni = async (dni) => {
+  console.log("El dni del paciente desde http es: " + dni);
+  const result = await fetch(API_PATIENT +"/dni/"+  dni, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+  return await result.json();
+};
+
 /*DOCTOR */
 export const createDoctor = async (doctorData) => {
   try {
@@ -143,6 +154,18 @@ export const createDoctor = async (doctorData) => {
     console.error("Error al crear el DOCTOR:", error);
     throw error; // Lanzamos el error para que sea manejado por el código que llama a esta función
   }
+};
+
+export const getDoctorDni = async (dni) => {
+  console.log("El dni del doctor desde http es: " + dni);
+
+  const result = await fetch(API_DOCTOR + "/dni/" + dni, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+  return await result.json();
 };
 
 export const getDoctor = async () => {

@@ -46,6 +46,7 @@ label{
 
 input::placeholder {
     font-size: 12px; /* Tamaño deseado del texto del placeholder */
+    text-align: center;
 }
 
 .help{
@@ -56,3 +57,38 @@ input::placeholder {
 .finAll{
     column-span: 2px; 
 }
+
+.form-list{
+    width: 100%;
+    text-align: center;
+}
+
+.form-search{
+    width: 100%;
+}
+
+.input{
+    display: inline-flex;
+}
+
+button, img{
+    border: none;
+}
+
+button img{
+    width: 30px;
+    border: none;
+}
+
+/* Estilo para ocultar las flechas en input type number */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ajuste adicional para Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+

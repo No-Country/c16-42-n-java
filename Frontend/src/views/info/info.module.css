@@ -5,6 +5,7 @@
     align-content: flex-end;
     columns: 4;
     width: auto;
+    
 
 }
 
@@ -14,6 +15,13 @@
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
     margin: 1%; /* Establece un margen exterior de 1% */
+}
+.sombra{
+    color: rgb(12, 69, 155); ;
+    width: auto;
+    height: auto;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
 }
 
 

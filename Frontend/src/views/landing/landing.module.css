@@ -1,4 +1,4 @@
-html, body {
+body,html{
     margin: 0;
     padding: 0;
     width: 100%;
@@ -9,11 +9,10 @@ html, body {
     align-content: stretch;
     justify-content: flex-end;
     align-items: stretch;
-    scrollbar-width: none;
+    /* scrollbar-width: thin; */
     
-    /* overflow: hidden; */
+    overflow: auto;
 }
-
 
 
 h1, h2, p, li{
@@ -30,10 +29,14 @@ h1, h2, p, li{
 }
 
 .container{
-    width: 100%;
+   
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden; /* Oculta las barras de desplazamiento */
     background-color: #7DA0CA;
     color: white;
     font-size: 1.5rem;
+    margin: auto;
     
 }
 

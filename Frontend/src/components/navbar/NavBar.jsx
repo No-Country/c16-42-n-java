@@ -88,43 +88,13 @@ export const Navbar = () => {
                   <li>
                     <hr className="dropdown-divider" />
                   </li>
-                  <li className="nav-item dropdown">
-                    <label className="dropdown-item" href="/turnos/buscar">
+                  <li>
+                    <a className="dropdown-item" href="/turnos/ver-todos">
                       VER ASIGNADOS
-                    </label>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a
-                          className="dropdown-item"
-                          href="/turnos/ver-todos"
-                        >
-                          Todos
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          className="dropdown-item"
-                          href="/administrar/secretaria/actualizar"
-                        >
-                          Por Paciente
-                        </a>
-                      </li>
-                      {/* <li>
-                        <hr className="dropdown-divider" />
-                      </li> */}
-                      <li>
-                        <a
-                          className="dropdown-item"
-                          href="/administrar/secretaria/eliminar"
-                        >
-                          Por Médico
-                        </a>
-                      </li>
-                    </ul>
+                    </a>
                   </li>
                 </ul>
               </li>
-
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
