@@ -8,9 +8,9 @@ import { useEffect, useState } from "react";
 import { getDoctorDni, getPatientDni } from "../../data/HttpClient";
 
 const initialStatusFind = {
-  isFindAll: false,
+  isFindAll: true,
   isFindDoctor: false,
-  isFindPatient: true,
+  isFindPatient: false,
 };
 
 export default function TurnoListAll() {
