@@ -36,4 +36,6 @@ public interface AppointmentRepository extends CrudRepository<Appointment,Long> 
                                                                                @Param("appointmentTime") LocalTime appointmentTime);
 
     List<Appointment> findByPatientId(Long id);
+
+    List<Appointment> findByDoctorId(Long id);
 }

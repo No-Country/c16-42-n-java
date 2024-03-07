@@ -1,11 +1,10 @@
 package com.medical.app.services;
 
 import com.medical.app.models.Appointment;
+import com.medical.app.models.Doctor;
 import com.medical.app.models.Patient;
 import com.medical.app.models.request.AppointmentCancelRequest;
-import com.medical.app.models.response.AppointmentResponse;
-import com.medical.app.models.response.AppointmentResponseDetails;
-import com.medical.app.models.response.DoctorAppointmentResponse;
+import com.medical.app.models.response.*;
 import com.medical.app.repository.AppointmentRepository;
 import com.medical.app.repository.DoctorRepository;
 import com.medical.app.repository.PatientRepository;
@@ -30,7 +29,8 @@ public class AppointmentService {
     private DoctorRepository      doctorRepository;
     @Autowired
     private PatientRepository     patientRepository;
-
+    @Autowired
+    private DoctorService    doctorService;
     public List<Appointment> getAllAppointments() {
 
         return appointmentRepository.findAll();
@@ -149,20 +149,47 @@ public class AppointmentService {
     }
 
 
-    public List<AppointmentResponse> getAppointmentResponsesByPatientDni(int patientDni) {
+    public List<AppointmentResponseDetails> getAppointmentResponsesByPatientDni(int patientDni) {
         Patient patient = patientRepository.findByDni(patientDni);
 
         if (patient != null) {
             List<Appointment> appointments = appointmentRepository.findByPatientId(patient.getId());
-            List<AppointmentResponse> appointmentResponses = new ArrayList<>();
+            List<AppointmentResponseDetails> appointmentResponses = new ArrayList<>();
 
             for (Appointment appointment : appointments) {
-                AppointmentResponse response = AppointmentResponse.builder()
+                Doctor doctor = appointment.getDoctor();
+                AppointmentResponseDetails response = AppointmentResponseDetails.builder()
                         .id(appointment.getId())
                         .appointmentDate(appointment.getDate())
                         .appointmentTime(appointment.getTime())
-                        .doctorId(appointment.getDoctor().getId())
-                        .patientId(appointment.getPatient().getId())
+                        .doctor(doctor.getName())  // Usa el nombre del médico en lugar del ID
+                        .patient(patient.getName()) // Usa el nombre del paciente en lugar del ID
+                        .reminder(appointment.getReminder())
+                        .status(appointment.getStatus())
+                        .build();
+
+                appointmentResponses.add(response);
+            }
+            return appointmentResponses;
+        } else {
+            throw new EntityNotFoundException("No se encontró al paciente con DNI: " + patientDni);
+        }
+    }
+
+    public List<AppointmentResponseDetails> getAppointmentsByDoctorDni(int doctorDni) {
+        DoctorResponseCompleto doctor = doctorService.getDoctorByDni(doctorDni);
+
+        if (doctor != null) {
+            List<Appointment> appointments = appointmentRepository.findByDoctorId(doctor.getId());
+            List<AppointmentResponseDetails> appointmentResponses = new ArrayList<>();
+
+            for (Appointment appointment : appointments) {
+                AppointmentResponseDetails response = AppointmentResponseDetails.builder()
+                        .id(appointment.getId())
+                        .appointmentDate(appointment.getDate())
+                        .appointmentTime(appointment.getTime())
+                        .doctor(doctor.getName())
+                        .patient(appointment.getPatient().getName())
                         .reminder(appointment.getReminder())
                         .status(appointment.getStatus())
                         .build();
@@ -172,8 +199,7 @@ public class AppointmentService {
 
             return appointmentResponses;
         } else {
-            throw new EntityNotFoundException("No se encontró al paciente con DNI: " + patientDni);
+            throw new EntityNotFoundException("No se encontró al médico con DNI: " + doctorDni);
         }
     }
-
 }

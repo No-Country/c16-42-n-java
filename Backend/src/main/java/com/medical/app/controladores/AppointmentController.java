@@ -7,6 +7,7 @@ import com.medical.app.models.request.AppointmentAvailabilityRequest;
 import com.medical.app.models.request.AppointmentCancelRequest;
 import com.medical.app.models.request.AppointmentRequest;
 import com.medical.app.models.response.AppointmentResponse;
+import com.medical.app.models.response.AppointmentResponseDetails;
 import com.medical.app.models.response.DoctorAppointmentResponse;
 import com.medical.app.models.response.PatientResponseComplete;
 import com.medical.app.services.AppointmentService;
@@ -150,21 +151,34 @@ public class AppointmentController {
     }
 
     @GetMapping("/dni/{dniString}")
-    public ResponseEntity<List<AppointmentResponse>> getAppointmentsPorDni(@PathVariable String dniString) {
+    public ResponseEntity<List<AppointmentResponseDetails>> getAppointmentsPorDni(@PathVariable String dniString) {
         System.err.println("*************El dni del paciente es: " + dniString + " ***************** ");
 
         try {
             int dni = Integer.parseInt(dniString);
-            List<AppointmentResponse> appointmentResponses = appointmentService.getAppointmentResponsesByPatientDni(dni);
+            List<AppointmentResponseDetails> appointmentResponses = appointmentService.getAppointmentResponsesByPatientDni(dni);
 
             if (!appointmentResponses.isEmpty()) {
                 return ResponseEntity.ok().body(appointmentResponses);
             } else {
-                // Manejar el caso en el que el paciente no tenga citas
                 return ResponseEntity.notFound().build();
             }
         } catch (NumberFormatException e) {
-            // Manejar la excepción en caso de que el DNI no sea un número válido
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @GetMapping("/dni-doctor/{dniString}")
+    public ResponseEntity<List<AppointmentResponseDetails>> getAppointmentsByDoctorDni(@PathVariable String dniString) {
+        try {
+            int dni = Integer.parseInt(dniString);
+            List<AppointmentResponseDetails> appointmentResponses = appointmentService.getAppointmentsByDoctorDni(dni);
+
+            if (!appointmentResponses.isEmpty()) {
+                return ResponseEntity.ok().body(appointmentResponses);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
         }
     }
