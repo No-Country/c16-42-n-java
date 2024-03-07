@@ -77,12 +77,12 @@ export const Navbar = () => {
 
                   <li>
                     <a className="dropdown-item" href="/turnos/modificar">
-                      Modificar
+                      Reprogramar
                     </a>
                   </li>
                   <li>
                     <a className="dropdown-item" href="/turnos/eliminar">
-                      Eliminar
+                      Cancelar
                     </a>
                   </li>
                   <li>

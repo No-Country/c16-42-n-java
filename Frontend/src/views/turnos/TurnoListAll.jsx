@@ -17,15 +17,16 @@ export default function TurnoListAll() {
   const [statusFind, setStatusFind] = useState(initialStatusFind);
   const { isFindAll, isFindDoctor, isFindPatient } = statusFind;
 
-  const { setDoctorFindDni } = UserHook();
+  const { doctorFindDni, setDoctorFindDni } = UserHook();
   const { doctorDni, setDoctorDni } = UserHook();
 
-  const { setPatientFindDni } = UserHook();
+  const { patientFindDni, setPatientFindDni } = UserHook();
   const { patientDni, setPatientDni } = UserHook();
 
   const enviarDoctor = (event) => {
     getDoctorDni(doctorDni)
       .then((data) => {
+        setDoctorFindDni(data);
         showDoctor();
         console.log("El doctor es: ", data);
 
@@ -38,22 +39,19 @@ export default function TurnoListAll() {
         // Maneja el error aquí
       });
 
-    const {
-      target: { name, value },
-    } = event;
     event.preventDefault();
-    setDoctorFindDni({
-      [name]: value,
-    });
+    setDoctorFindDni([]);
+    console.log("El doctorFindDni: :" + doctorFindDni);
     // setUser(userInitial);
   };
 
   const enviarPatient = (event) => {
     getPatientDni(patientDni)
       .then((data) => {
+        setPatientFindDni(data);
         showPatient();
-        console.log("Que valor tiene" +isFindPatient)
-        console.log("El paciente es: ", data);
+        // console.log("Que valor tiene" + isFindPatient);
+        // console.log("El paciente es: ", data);
 
         // Maneja la respuesta del servidor aquí
       })
@@ -64,41 +62,37 @@ export default function TurnoListAll() {
         // Maneja el error aquí
       });
 
-    const {
-      target: { name, value },
-    } = event;
     event.preventDefault();
-    setPatientDni({
-      [name]: value,
-    });
+    setPatientFindDni([]);
+    // console.log("El patiendFindDni: :" + patientFindDni);
     // setUser(userInitial);
   };
 
   //Doctor
   const handleDoctorOnChange = (event) => {
     setDoctorDni(event.target.value);
-    console.log("El doctor en el handler es: ", doctorDni);
+    // console.log("El doctor en el handler es: ", doctorDni);
   };
 
-  useEffect(
-    () => console.log("El doctor en el handler es: ", doctorDni),
-    [doctorDni]
-  );
+  // useEffect(
+  //   () => console.log("El doctor en el handler es: ", doctorDni),
+  //   [doctorDni]
+  // );
 
   //Paciente
   const handlePatientOnChange = (event) => {
     setPatientDni(event.target.value);
-    console.log("El paciente en el handler es: ", patientDni);
+    // console.log("El paciente en el handler es: ", patientDni);
   };
 
-  useEffect(
-    () => console.log("El paciente en el handler es: ", patientDni),
-    [patientDni]
-  );
+  // useEffect(
+  //   () => console.log("El paciente en el handler es: ", patientDni),
+  //   [patientDni]
+  // );
 
   //status para ocultar
   const showDoctor = () => {
-    setStatusFind((prevStatus)=>({
+    setStatusFind((prevStatus) => ({
       ...prevStatus,
       isFindAll: false,
       isFindDoctor: true,
@@ -107,7 +101,7 @@ export default function TurnoListAll() {
   };
 
   const showPatient = () => {
-    setStatusFind((prevStatus)=>({
+    setStatusFind((prevStatus) => ({
       ...prevStatus,
       isFindAll: false,
       isFindDoctor: false,
@@ -164,17 +158,23 @@ export default function TurnoListAll() {
                 </form>
               </div>
             </div>
-            {isFindAll== true && isFindDoctor==false && isFindPatient==false ? (
+            {isFindAll == true &&
+            isFindDoctor == false &&
+            isFindPatient == false ? (
               <TurnoFindAll />
             ) : (
               ""
             )}
-           {isFindAll== false && isFindDoctor==true && isFindPatient==false ? (
+            {isFindAll == false &&
+            isFindDoctor == true &&
+            isFindPatient == false ? (
               <TurnoFindDoctor />
             ) : (
               ""
             )}
-            {isFindAll== false && isFindDoctor==false && isFindPatient==true ? (
+            {isFindAll == false &&
+            isFindDoctor == false &&
+            isFindPatient == true ? (
               <TurnoFindPatient />
             ) : (
               ""

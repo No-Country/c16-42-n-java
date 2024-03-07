@@ -51,6 +51,7 @@ const appointmentsInitial = {
   description: "",
 };
 
+
 const UserProvider = ({ children }) => {
   const [status, setStatus] = useState(null);
   const [user, setUser] = useState(userInitial);
@@ -60,10 +61,10 @@ const UserProvider = ({ children }) => {
   const [appointments, setAppointments] = useState(appointmentsInitial);
 
   //Para buscar en formulario de Turno
-  const [doctorFindDni, setDoctorFindDni] = useState(doctorInitial);
+  const [doctorFindDni, setDoctorFindDni] = useState([]);
   const [doctorDni, setDoctorDni] = useState("");
 
-  const [patientFindDni, setPatientFindDni] = useState(patientInitial);
+  const [patientFindDni, setPatientFindDni] = useState([]);
   const [patientDni, setPatientDni] = useState("");
 
   useEffect(() => {

@@ -125,8 +125,7 @@ export const getPatient = async () => {
 };
 
 export const getPatientDni = async (dni) => {
-  console.log("El dni del paciente desde http es: " + dni);
-  const result = await fetch(API_PATIENT +"/dni/"+  dni, {
+  const result = await fetch(API_APPOINTMENTS +"/dni/"+  dni, {
     method: "GET",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -159,7 +158,7 @@ export const createDoctor = async (doctorData) => {
 export const getDoctorDni = async (dni) => {
   console.log("El dni del doctor desde http es: " + dni);
 
-  const result = await fetch(API_DOCTOR + "/dni/" + dni, {
+  const result = await fetch(API_APPOINTMENTS + "/dni-doctor/" + dni, {
     method: "GET",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -167,6 +166,7 @@ export const getDoctorDni = async (dni) => {
   });
   return await result.json();
 };
+
 
 export const getDoctor = async () => {
   const result = await fetch(API_DOCTOR + "/get-doctor", {
