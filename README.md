@@ -73,7 +73,7 @@ Puedes cambiar las variables a tu gusto! para futuras pruebas
 
 - **Carpeta en Google Drive:**
   - Accede a la carpeta de Google Drive que contiene la documentación de QA del proyecto.
-  - [Documentación de QA - Google Drive](link) 
+  - [Documentación de QA - Google Drive](https://drive.google.com/drive/folders/1m5ALi8mG6Rmh77mr-RZTv-UY5B8WjIGP?usp=drive)
 
 ## Contacto del Equipo
 
@@ -99,10 +99,10 @@ Puedes cambiar las variables a tu gusto! para futuras pruebas
       - Explorador de nuevas tecnologías y herramientas, implementador de estructuras backend y corrector de datos de informacion responsivas, me gusta hacer funcionalidades backend.
 
   - **QA:**
-    - **Gabriela Beatriz Pardo** ----> cambiar
-      - GitHub: [GBPardoGabrielaBeatriz](https://github.com/GBPardoGabrielaBeatriz)
-      - LinkedIn: [Gabriela Beatriz Pardo](https://www.linkedin.com/in/gabriela-beatriz-pardo-24a5b6190)
-      - Defensora implacable de la calidad. Caza errores con precisión quirúrgica para garantizar que cada función sea impecable.
+    - **Cinthia Gutierrez Vargas** 
+      - GitHub: [CinthiaGV](https://github.com/CinthiaGV)
+      - LinkedIn: [Cinthia Gutierrez Vargas](https://www.linkedin.com/in/cinthia-guti%C3%A9rrez-vargas-ti/)
+      - Defensora implacable de la calidad. Caza errores con precisión para garantizar que cada función sea impecable.
 
 
 
