@@ -23,8 +23,8 @@ import DoctorDelete from "../views/administrar/doctor/DoctorDelete.jsx";
 import Turno from "../views/turnos/Turno.jsx";
 import TurnoCreate from "../views/turnos/TurnoCreate.jsx";
 import TurnoUpdate from "../views/turnos/TurnoUpdate.jsx";
-import TurnoDelete from "../views/turnos/TurnoDelete.jsx";
 import TurnoListAll from "../views/turnos/TurnoListAll.jsx";
+import TurnoCancel from "../views/turnos/TurnoCancel.jsx";
 
 export const UserRoute = () => {
   const { status } = UserHook(); //Utilizo el hook personalizado
@@ -77,8 +77,9 @@ export const UserRoute = () => {
 
         {/* TURNOS */}
         <Route path="/turnos/solicitar" element={<TurnoCreate />} />
-        <Route path="/turnos/modificar" element={<TurnoUpdate />} />
-        <Route path="/turnos/eliminar" element={<TurnoDelete />} />
+        <Route path="/turnos/actualizar" element={<TurnoUpdate />} />
+        <Route path="/turnos/cancelar" element={<TurnoCancel />} />
+        <Route path="/turnos/ver-todos" element={<TurnoListAll />} />
         <Route path="/turnos/ver-todos" element={<TurnoListAll />} />
         <Route path="/turnos" element={<Turno />} />
       </Routes>
