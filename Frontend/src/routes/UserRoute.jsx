@@ -26,6 +26,8 @@ import TurnoUpdate from "../views/turnos/TurnoUpdate.jsx";
 import TurnoListAll from "../views/turnos/TurnoListAll.jsx";
 import TurnoCancel from "../views/turnos/TurnoCancel.jsx";
 
+import Search from "../views/buscar/Search.jsx"
+
 export const UserRoute = () => {
   const { status } = UserHook(); //Utilizo el hook personalizado
   console.log("Este es el satus en SUerRoute " + status);
@@ -81,6 +83,9 @@ export const UserRoute = () => {
         <Route path="/turnos/cancelar" element={<TurnoCancel />} />
         <Route path="/turnos/ver-todos" element={<TurnoListAll />} />
         <Route path="/turnos" element={<Turno />} />
+        
+        {/* BUSCAR */}
+        <Route path="/buscar" element={<Search />} />
       </Routes>
     </>
   );

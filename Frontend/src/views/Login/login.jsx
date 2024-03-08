@@ -16,9 +16,10 @@ const userInitial = {
 export default function Login() {
   const { status, setStatus, user, setUser } = UserHook(); //Utilizo el hook personalizado
 
+  const { name, lastname, username, password, rol } = user;
+  
   const [roles, setRoles] = useState([]);
 
-  const { name, lastname, username, password, rol } = user;
 
   const [message, setMessage] = useState("");
 

@@ -226,3 +226,36 @@ export const turnoCancel = async (detailsTurnoCancel) => {
     throw error; // Lanzamos el error para que sea manejado por el código que llama a esta función
   }
 };
+
+/* BUSCAR */
+
+export const getPatientDniSearch = async (dni) => {
+  console.log("El dni del paciente es: " + dni);
+  const result = await fetch(API_PATIENT +"/dni/"+  dni, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+  return await result.json();
+};
+
+export const getDoctorDniSearch = async (dni) => {
+  const result = await fetch(API_DOCTOR +"/dni/"+  dni, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+  return await result.json();
+};
+
+export const getSecretaryDniSearch = async (dni) => {
+  const result = await fetch(API_SECRETARY +"/dni/"+  dni, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  });
+  return await result.json();
+};

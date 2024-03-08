@@ -1,6 +1,6 @@
-# [Track] - 🚀 Aplicacion de clinica medica de No Country
+# [Track] - 🚀 Aplicacion de Clínica Médica "No Country"
 
-**Track** Es una apliacion MVP (Producto Mínimo Viable) que te permite gestionar, administrar y crear turnos con propositos clinicos, asi como la creacion, modificacion y eliminacion de pacientes, medicos y secretarios. Debajo se encontraran espacios trabajados de forma independiente, frontend, backend y área de pruebas.   
+**Track** Es una apliacion MVP (Producto Mínimo Viable) que te permite gestionar, administrar y crear turnos con propósitos clínicos, as como la creación, modificación y eliminación de pacientes, médicos, secretarios y administradores. Debajo se encontrarán espacios trabajados de forma independiente: Frontend, Backend y Area de pruebas.   
 ## Despliegue en máquina local del Proyecto
 
 - **Frontend:**

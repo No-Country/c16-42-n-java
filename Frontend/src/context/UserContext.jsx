@@ -52,6 +52,7 @@ const appointmentsInitial = {
 };
 
 
+
 const UserProvider = ({ children }) => {
   const [status, setStatus] = useState(null);
   const [user, setUser] = useState(userInitial);
@@ -66,6 +67,9 @@ const UserProvider = ({ children }) => {
 
   const [patientFindDni, setPatientFindDni] = useState([]);
   const [patientDni, setPatientDni] = useState("");
+
+  const [secretaryFindDni, setSecretaryFindDni] = useState([]);
+  const [secretaryDni, setSecretaryDni] = useState("");
 
   useEffect(() => {
     const storedStatus = sessionStorage.getItem("st");
@@ -100,6 +104,10 @@ const UserProvider = ({ children }) => {
         setDoctorDni,
         patientDni,
         setPatientDni,
+        secretaryFindDni,
+        setSecretaryFindDni,
+        secretaryDni,
+        setSecretaryDni,
       }}
     >
       {status === null ? (
