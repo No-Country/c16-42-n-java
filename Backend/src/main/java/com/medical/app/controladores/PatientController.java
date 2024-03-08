@@ -29,6 +29,9 @@ public class PatientController {
     @PostMapping("/create-patient")
     public ResponseEntity<?> createPatient(@RequestBody PatientRequest patientRequest) {
         System.out.println(patientRequest.toString());
+        if (patientRequest.getDni() == null) {
+            return new ResponseEntity<>("El campo DNI no puede ser nulo", HttpStatus.BAD_REQUEST);
+        }
             PatientResponse createdPatient = patientService.createPatient(patientRequest);
             return ResponseEntity.ok().body(createdPatient);
 

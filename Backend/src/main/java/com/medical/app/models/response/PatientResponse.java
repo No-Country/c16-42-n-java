@@ -1,5 +1,7 @@
 package com.medical.app.models.response;
+import jakarta.validation.constraints.NotEmpty;
 
+import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Data;
 
