@@ -46,7 +46,7 @@ export const TurnoFindAll = () => {
               <td>{m.appointmentTime}</td>
               <td>{m.doctor}</td>
               <td>{m.patient}</td>
-              {m.reminder ? <td>Activo</td> : <td>Cancelado</td>}
+              {m.reminder ? <td>Enviado</td> : <td>Cancelado</td>}
               {m.status ? <td>Activo</td> : <td>Cancelado</td>}
             </tr>
           ))}
