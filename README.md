@@ -102,7 +102,7 @@ Puedes cambiar las variables a tu gusto! para futuras pruebas
     - **Cinthia Gutierrez Vargas** 
       - GitHub: [CinthiaGV](https://github.com/CinthiaGV)
       - LinkedIn: [Cinthia Gutierrez Vargas](https://www.linkedin.com/in/cinthia-guti%C3%A9rrez-vargas-ti/)
-      - Defensora implacable de la calidad. Caza errores con precisión para garantizar que cada función sea impecable.
+      - Defensora de la calidad y detecto errores con precisión para garantizar la perfección de cada funcionalidad.
 
 
 
