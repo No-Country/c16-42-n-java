@@ -4,6 +4,8 @@ export const TurnoFindPatient = () => {
   const { patientFindDni } = UserHook();
   console.log("Estoy en turnofindpatient:", patientFindDni);
 
+  const filteredPatients = patientFindDni.filter(p => p.status === true);  //Filtro par que solo me muestre lo que estan con estado = true
+
   return (
     <>
       <table className="table table-striped ">
@@ -19,15 +21,15 @@ export const TurnoFindPatient = () => {
           </tr>
         </thead>
         <tbody>
-          {patientFindDni.map((p, index) => (
+          {filteredPatients.map((p, index) => (
             <tr key={index}>
               <th scope="row">{index + 1}</th>
               <td>{p.appointmentDate}</td>
               <td>{p.appointmentTime}</td>
               <td>{p.doctor}</td>
               <td>{p.patient}</td>
-              {p.reminder ? <td>Activo</td> : <td>Canvelado</td>}
-              {p.status ? <td>Activo</td> : <td>Canvelado</td>}
+              {p.reminder ? <td>Activo</td> : <td>Cancelado</td>}
+              {p.status ? <td>Activo</td> : <td>Cancelado</td>}
             </tr>
           ))}
         </tbody>

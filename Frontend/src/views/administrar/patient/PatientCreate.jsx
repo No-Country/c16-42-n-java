@@ -34,6 +34,8 @@ export default function Create() {
 
   const [secretaryId, setSecretaryId] = useState(); //Guardo el Secretario Seleccionado
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchSecretary = () => {
       getSecretary()
@@ -60,7 +62,8 @@ export default function Create() {
     createPatient(patient)
       .then((data) => {
         console.log("Patient create:", data);
-        // window.location.reload();
+        navigate("/info");
+        window.location.reload();
       })
       .catch((error) => {
         setPatient(patientInitial);
@@ -131,6 +134,7 @@ export default function Create() {
                 value={name}
                 placeholder="Francisco Alenda"
                 onChange={patientOnchange}
+                required
               />
             </div>
             <div className="col-6">
@@ -145,6 +149,7 @@ export default function Create() {
                 value={email}
                 placeholder="nombre@nombre.com"
                 onChange={patientOnchange}
+                required
               />
             </div>
             <div className="col-6">
@@ -159,6 +164,7 @@ export default function Create() {
                 value={address}
                 placeholder="Calle Siempre Viva - 2200 - Prov. de San Juan - Argentina"
                 onChange={patientOnchange}
+                required
               />
             </div>
             <div className="col-md-6">
@@ -173,6 +179,7 @@ export default function Create() {
                 value={phoneNumber}
                 placeholder="2644123833"
                 onChange={patientOnchange}
+                required
               />
               <div className={styles.help}>
                 * Télefono con Cod. de área sin 0 ni 15
@@ -188,6 +195,7 @@ export default function Create() {
                 id="birthDate"
                 name="birthDate"
                 value={birthDate}
+                required
                 onChange={(e) => setBirthDate(e.target.value)} // Actualiza el estado de birthDate
               />
               <div className={styles.help}>
@@ -205,6 +213,7 @@ export default function Create() {
                 name="emergencyNumber"
                 value={emergencyNumber}
                 placeholder="2644123833"
+                required
                 onChange={patientOnchange}
               />
               <div className={styles.help}>
