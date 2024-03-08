@@ -4,7 +4,7 @@
 ## Despliegue en máquina local del Proyecto
 
 - **Frontend:**
-  - [Track Frontend](https://s12-15-t-java-react-ol6n.vercel.app/) - Despliegue de la aplicación frontend ----> cambiar.
+  - [Track Frontend](Local)
 
 - **Backend:**
   - [Track Backend - Documentación Swagger](https://drive.google.com/file/d/19_B4Jy16LWoRstpN9y5_3i7xjMMe5k59/view?usp=sharing) - Documentación Swagger evidencias para explorar los endpoints del backend con responses y request incluidos.
@@ -15,7 +15,7 @@ La aplicación se estructura de la siguiente manera:
 
 - **Turnos:** Cada espacio gestiona un turno o cita clinica en funcion de las entidades clinicas.
 - **Buscar:** Representan nuestras entidades del proyecto en lista.
-- **Administrar:** Gestiona las entidades secreatrio, medico, paciente.
+- **Administrar:** Gestiona las entidades secretario, médico, paciente.
 ## 🌟🌟🌟 Características del proyecto
 
 - Solicitar, Cancelar y reprogramar turnos clinicos en la tabla.
@@ -27,12 +27,7 @@ La aplicación se estructura de la siguiente manera:
 
 ## Configuración de Variables locales
 
-A continuación, se detallan las variables locales utilizadas en el proyecto. Estas variables son esenciales para la configuración del frontend y el backend de forma local.
-
-### Frontend: 
---> borrar si no sirve
-- `NEXT_PUBLIC_API_URL`: URL de la API (backend) para el frontend.
-- `NEXT_PUBLIC_GIPHY_API_KEY`: Clave de API de Giphy para el frontend.
+A continuación, se detallan las variables locales utilizadas en el proyecto. Estas variables son esenciales para la configuración del  backend de forma local.
 
 ### Backend:
  una breve descripcion de las properties a nuestra base de datos
@@ -50,7 +45,7 @@ Puedes cambiar las variables a tu gusto! para futuras pruebas
 ## 🛠️ Herramientas Utilizadas
 
 - **Frontend:**
-  - [Next.js](https://nextjs.org/): Framework de React para construir aplicaciones web modernas.
+  - [React](https://nextjs.org/): Framework de React para construir aplicaciones web modernas.
 
 - **Backend:**
   - [Spring Boot](https://spring.io/projects/spring-boot): Framework de Java para desarrollar aplicaciones backend robustas y eficientes.
@@ -65,7 +60,7 @@ Puedes cambiar las variables a tu gusto! para futuras pruebas
 ## Prototipo Funcional en maquina local
 
 - **Track:**
-  - [Prototipo Funcional - Clinica medica]
+  - [Prototipo Funcional - Clínica Médica No Country]
   (http://localhost:8080/) para backend
   (http://localhost:5173/) para frontend
 
@@ -86,11 +81,9 @@ Puedes cambiar las variables a tu gusto! para futuras pruebas
       - LinkedIn: [Alejandro Dominguez](https://www.linkedin.com/in/jose-alejandro-dominguez/)
   
   - **Frontends:**
-    - **Andrés Boni**
-      - GitHub: [AndresBoni](https://github.com/AndresBoni)
-      - LinkedIn: [Andrés Boni](https://www.linkedin.com/in/andresboni)
-      - Portfolio: [Portfolio de Andrés](https://boni.nz/)
-      - Apasionado por dar vida a experiencias de usuario cautivadoras y navegaciones fluidas. Siempre en busca de la combinación perfecta entre funcionalidad y belleza.
+    - **Francisco Alenda - FranDev**
+      - GitHub: [panchoalenda](https://github.com/panchoalenda)
+      - LinkedIn: [Francisco Alenda](https://www.linkedin.com/in/franciscoalenda/)
 
   - **Backends:**
     - **Franco Torrico**
