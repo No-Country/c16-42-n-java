@@ -80,7 +80,6 @@ export const UserRoute = () => {
         <Route path="/turnos/actualizar" element={<TurnoUpdate />} />
         <Route path="/turnos/cancelar" element={<TurnoCancel />} />
         <Route path="/turnos/ver-todos" element={<TurnoListAll />} />
-        <Route path="/turnos/ver-todos" element={<TurnoListAll />} />
         <Route path="/turnos" element={<Turno />} />
       </Routes>
     </>

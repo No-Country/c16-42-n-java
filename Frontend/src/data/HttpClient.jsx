@@ -206,3 +206,23 @@ export const getAppointmentsListDetails = async () => {
   });
   return await result.json();
 };
+
+export const turnoCancel = async (detailsTurnoCancel) => {
+  console.log(detailsTurnoCancel)
+  try {
+    const result = await fetch(API_APPOINTMENTS + "/cancel", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify(detailsTurnoCancel), // Convertimos el objeto de usuario a JSON
+    });
+    if (!result.ok) {
+      throw new Error("Error al cancelar el TURNO");
+    }
+    return await result.json(); // Devolvemos los datos obtenidos del servidor
+  } catch (error) {
+    console.error("Error al cancelar el TURNO:", error);
+    throw error; // Lanzamos el error para que sea manejado por el código que llama a esta función
+  }
+};

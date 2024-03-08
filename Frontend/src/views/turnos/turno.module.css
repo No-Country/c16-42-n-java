@@ -19,7 +19,7 @@
 }
 
 
-form,.form {
+form,.form,.form-cancel {
     width: 50%;
     background-color: #2768b7b0;
     color: rgba(0, 0, 0, 0.71);
@@ -28,6 +28,12 @@ form,.form {
     border-radius: 10px; /* Agrega bordes redondeados al formulario */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Agrega sombra al formulario */
 }
+
+.form-cancel{
+width: 40%;
+}
+
+
 label{
     color: rgba(0, 0, 0, 0.71);
 }
@@ -92,3 +98,9 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
+
+
+.button{
+    margin-top: 10px ;
+    background-color: #71777cb0; ;
+}

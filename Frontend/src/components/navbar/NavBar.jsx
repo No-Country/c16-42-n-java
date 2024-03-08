@@ -76,7 +76,7 @@ export const Navbar = () => {
                   </li>
 
                   <li>
-                    <a className="dropdown-item" href="/turnos/modificar">
+                  <a className="dropdown-item" href="/turnos/solicitar">
                       Reprogramar
                     </a>
                   </li>

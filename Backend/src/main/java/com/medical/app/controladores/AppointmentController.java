@@ -115,6 +115,7 @@ public class AppointmentController {
 
     @PostMapping("/cancel")
     public ResponseEntity<String> cancelAppointment(@RequestBody AppointmentCancelRequest cancelRequest) {
+        System.out.println(" En el endpoint cancel es :" + cancelRequest.toString());
         try {
             appointmentService.cancelAppointment(cancelRequest);
             return ResponseEntity.ok("La cita se ha cancelado exitosamente.");
